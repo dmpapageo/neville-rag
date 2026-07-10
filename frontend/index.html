@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Feeling Is the Secret — Ask the Book</title>
+<style>
+  :root {
+    --paper: #f6f3ec;
+    --card: #fffdf8;
+    --ink: #23201b;
+    --muted: #6f6a60;
+    --line: #e4ddce;
+    --accent: #9a6a1f;
+    --accent-soft: #f2e4c8;
+    --mark: #ffe9a8;
+    --shadow: 0 1px 2px rgba(40, 33, 20, .05), 0 8px 24px rgba(40, 33, 20, .06);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 48px 24px 96px; }
+  header { text-align: center; margin-bottom: 32px; }
+  header h1 { font: 600 30px/1.2 Georgia, "Times New Roman", serif; margin: 0 0 6px; letter-spacing: .2px; }
+  header p { margin: 0; color: var(--muted); font-size: 14px; }
+
+  form { display: flex; gap: 10px; margin-bottom: 14px; }
+  #q {
+    flex: 1; padding: 14px 16px; font-size: 16px; color: var(--ink);
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: var(--shadow); outline: none;
+  }
+  #q:focus { border-color: var(--accent); }
+  button {
+    padding: 0 22px; font-size: 15px; font-weight: 600; color: #fff; cursor: pointer;
+    background: var(--accent); border: none; border-radius: 12px;
+  }
+  button:disabled { opacity: .55; cursor: default; }
+
+  .examples { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  .chip {
+    font-size: 13px; color: var(--muted); background: transparent; cursor: pointer;
+    border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px;
+  }
+  .chip:hover { border-color: var(--accent); color: var(--accent); }
+
+  .status { color: var(--muted); font-size: 15px; display: none; align-items: center; gap: 10px; }
+  .status.show { display: flex; }
+  .spinner {
+    width: 16px; height: 16px; border: 2px solid var(--line); border-top-color: var(--accent);
+    border-radius: 50%; animation: spin .8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .answer-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    box-shadow: var(--shadow); padding: 28px 30px; margin-bottom: 24px; display: none;
+  }
+  .answer-card.show { display: block; }
+  .answer { font: 17px/1.75 Georgia, "Times New Roman", serif; }
+  .answer p { margin: 0 0 14px; }
+  .answer p:last-child { margin-bottom: 0; }
+  .answer strong { font-weight: 700; }
+  sup.cite {
+    font-family: -apple-system, sans-serif; font-size: 11px; font-weight: 700; line-height: 0;
+    color: var(--accent); background: var(--accent-soft); border-radius: 5px;
+    padding: 2px 5px; margin: 0 2px; cursor: pointer; vertical-align: super;
+  }
+  sup.cite:hover, sup.cite.active { background: var(--accent); color: #fff; }
+
+  .chapters { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line);
+    font-size: 13px; color: var(--muted); }
+  .chapters b { color: var(--ink); font-weight: 600; }
+  .tag { display: inline-block; background: var(--accent-soft); color: var(--accent);
+    border-radius: 999px; padding: 3px 10px; margin: 0 4px 4px 0; font-size: 12px; font-weight: 600; }
+
+  .notice {
+    display: none; gap: 10px; align-items: flex-start; margin-bottom: 24px; padding: 14px 16px;
+    background: #fbf4e6; border: 1px solid #ecdcb8; border-radius: 12px; color: #7a5a1c; font-size: 14px;
+  }
+  .notice.show { display: flex; }
+
+  .sources-h { font-size: 13px; text-transform: uppercase; letter-spacing: .08em;
+    color: var(--muted); margin: 8px 2px 12px; display: none; }
+  .sources-h.show { display: block; }
+  .source {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 16px 18px; margin-bottom: 12px; transition: border-color .15s, box-shadow .15s;
+  }
+  .source.active { border-color: var(--accent); box-shadow: var(--shadow); }
+  .source .meta { font-size: 12.5px; color: var(--muted); margin-bottom: 8px; display: flex;
+    justify-content: space-between; gap: 12px; }
+  .source .meta .sec { color: var(--accent); font-weight: 600; }
+  .source .body { font: 15px/1.7 Georgia, serif; color: #35302a; white-space: pre-wrap; }
+  .source .body mark { background: var(--mark); border-radius: 3px; padding: 0 1px; }
+  .nosrc { color: var(--muted); font-size: 14px; font-style: italic; padding: 4px 2px; }
+
+  .error { display: none; color: #8a2b2b; background: #fbeceb; border: 1px solid #efc9c6;
+    border-radius: 12px; padding: 14px 16px; font-size: 14px; }
+  .error.show { display: block; }
+  footer { text-align: center; color: var(--muted); font-size: 12.5px; margin-top: 40px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Feeling Is the Secret</h1>
+      <p>Ask a question — answers are grounded only in Neville Goddard’s 1944 text, with citations.</p>
+    </header>
+
+    <form id="form">
+      <input id="q" type="text" placeholder="Ask a question about the book…" autocomplete="off" />
+      <button id="btn" type="submit">Ask</button>
+    </form>
+    <div class="examples" id="examples"></div>
+
+    <div class="status" id="status"><span class="spinner"></span><span id="statusText">Searching the book…</span></div>
+    <div class="error" id="error"></div>
+
+    <div class="notice" id="notice">
+      <span>ⓘ</span>
+      <span id="noticeText"></span>
+    </div>
+
+    <div class="answer-card" id="answerCard">
+      <div class="answer" id="answer"></div>
+      <div class="chapters" id="chapters"></div>
+    </div>
+
+    <div class="sources-h" id="sourcesH">Source passages</div>
+    <div id="sources"></div>
+
+    <footer>Retrieval-augmented over “Feeling Is the Secret” (public domain). Answers may be imperfect.</footer>
+  </div>
+
+<script>
+const LOW_RELEVANCE = 0.42;
+const EXAMPLES = [
+  "What does Neville say about sleep?",
+  "How does feeling relate to prayer?",
+  "What is the law of consciousness?",
+  "What does the book say about diet and exercise?",
+];
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+let SOURCES = {};      // chunk_index -> source
+let CITES = {};        // marker -> citation
+let pinnedMarker = null;  // currently pinned citation marker (click-to-pin highlight)
+
+function renderExamples() {
+  $("examples").innerHTML = "";
+  EXAMPLES.forEach(q => {
+    const b = document.createElement("button");
+    b.className = "chip"; b.type = "button"; b.textContent = q;
+    b.onclick = () => { $("q").value = q; submit(); };
+    $("examples").appendChild(b);
+  });
+}
+
+function renderAnswer(text, interactive = true) {
+  let h = esc(text);
+  h = h.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+  if (interactive) {
+    h = h.replace(/\[(\d+)\]/g, (m, n) =>
+      CITES[n] ? `<sup class="cite" data-marker="${n}" tabindex="0">${n}</sup>` : m);
+  } else {
+    h = h.replace(/ ?\[(\d+)\]/g, "");   // strip markers when passages are hidden (out-of-scope)
+  }
+  return h.split(/\n{2,}/).map(p => `<p>${p.replace(/\n/g, "<br>")}</p>`).join("");
+}
+
+function sourceBody(src, hi) {
+  const t = src.text;
+  if (!hi) return esc(t);
+  const a = Math.max(0, hi.start - src.char_start);
+  const b = Math.max(a, hi.end - src.char_start);
+  return esc(t.slice(0, a)) + "<mark>" + esc(t.slice(a, b)) + "</mark>" + esc(t.slice(b));
+}
+
+function setStatus(show, text) {
+  if (text) $("statusText").textContent = text;
+  $("status").classList.toggle("show", show);
+}
+
+function renderSourceCards(sources) {
+  const box = $("sources");
+  box.innerHTML = "";
+  sources.forEach(s => {
+    const el = document.createElement("div");
+    el.className = "source"; el.id = "src-" + s.chunk_index;
+    el.innerHTML =
+      `<div class="meta"><span class="sec">${esc(s.section)}</span>` +
+      `<span>chunk #${s.chunk_index} · relevance ${s.rerank_score.toFixed(2)}</span></div>` +
+      `<div class="body">${esc(s.text)}</div>`;
+    box.appendChild(el);
+  });
+}
+
+// Click-to-pin highlight: one citation stays highlighted until the user clicks a
+// different citation (moves) or clicks empty space (clears). No auto-fade.
+function clearHighlight() {
+  if (pinnedMarker == null) return;
+  const c = CITES[pinnedMarker];
+  document.querySelectorAll(`sup.cite[data-marker="${pinnedMarker}"]`).forEach(s => s.classList.remove("active"));
+  const card = c && $("src-" + c.chunk_index);
+  if (card) {
+    card.classList.remove("active");
+    card.querySelector(".body").innerHTML = esc(SOURCES[c.chunk_index].text);
+  }
+  pinnedMarker = null;
+}
+
+function pinHighlight(marker) {
+  if (String(pinnedMarker) === String(marker)) return;  // already pinned
+  clearHighlight();                                      // move: remove previous first
+  const c = CITES[marker];
+  const card = c && $("src-" + c.chunk_index);
+  if (!card) return;
+  document.querySelectorAll(`sup.cite[data-marker="${marker}"]`).forEach(s => s.classList.add("active"));
+  card.classList.add("active");
+  card.querySelector(".body").innerHTML = sourceBody(SOURCES[c.chunk_index], { start: c.char_start, end: c.char_end });
+  card.scrollIntoView({ behavior: "smooth", block: "center" });
+  pinnedMarker = marker;
+}
+
+function wireCitations() {
+  document.querySelectorAll("sup.cite").forEach(sup => {
+    sup.addEventListener("click", (e) => { e.stopPropagation(); pinHighlight(sup.dataset.marker); });
+    sup.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pinHighlight(sup.dataset.marker); }
+    });
+  });
+}
+
+// Clicking anywhere that isn't a citation clears the highlight.
+document.addEventListener("click", (e) => {
+  if (!e.target.closest("sup.cite")) clearHighlight();
+});
+
+async function submit() {
+  const question = $("q").value.trim();
+  if (!question) return;
+
+  // reset UI
+  $("btn").disabled = true;
+  $("error").classList.remove("show");
+  $("notice").classList.remove("show");
+  $("chapters").style.display = "none"; $("chapters").innerHTML = "";
+  $("sourcesH").classList.remove("show"); $("sources").innerHTML = "";
+  $("answer").innerHTML = ""; $("answerCard").classList.remove("show");
+  setStatus(true, "Searching the book…");
+
+  SOURCES = {}; CITES = {}; pinnedMarker = null;
+  let acc = "", metaSources = [], outOfScope = false, started = false, finished = false, pending = false;
+  const scheduleRender = () => {
+    if (pending) return;
+    pending = true;
+    requestAnimationFrame(() => {
+      pending = false;
+      if (finished) return;             // don't clobber the final render + wired citations
+      $("answer").innerHTML = renderAnswer(acc, !outOfScope);
+    });
+  };
+
+  const handle = (ev) => {
+    if (ev.type === "meta") {
+      metaSources = ev.sources;
+      metaSources.forEach(s => SOURCES[s.chunk_index] = s);
+      outOfScope = ev.top_score < LOW_RELEVANCE;
+      if (outOfScope) {
+        $("noticeText").textContent =
+          "This question appears to fall outside the book. The answer reflects only what the text supports — no closely matching passages were found.";
+        $("notice").classList.add("show");
+        $("sources").innerHTML = `<div class="nosrc">No relevant passages were found in the book for this question.</div>`;
+      }
+      setStatus(true, "Reading the passages…");
+    } else if (ev.type === "text") {
+      if (!started) { started = true; setStatus(false); $("answerCard").classList.add("show"); }
+      acc += ev.text;
+      scheduleRender();
+    } else if (ev.type === "citation") {
+      if (!outOfScope) { CITES[ev.marker] = ev; acc += `[${ev.marker}]`; scheduleRender(); }
+    } else if (ev.type === "done") {
+      finished = true;
+      $("answer").innerHTML = renderAnswer(acc, !outOfScope);
+      $("answerCard").classList.add("show");
+      if (!outOfScope) {
+        const secs = [...new Set(Object.values(CITES).map(c => c.section))];
+        if (secs.length) {
+          $("chapters").innerHTML =
+            `<b>Drawn from:</b> ` + secs.map(s => `<span class="tag">${esc(s)}</span>`).join("");
+          $("chapters").style.display = "";
+        }
+        renderSourceCards(metaSources);
+        $("sourcesH").classList.add("show");
+        wireCitations();
+      }
+    } else if (ev.type === "error") {
+      throw new Error(ev.message);
+    }
+  };
+
+  try {
+    const res = await fetch("/api/ask/stream", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question }),
+    });
+    if (!res.ok || !res.body) throw new Error("Request failed (" + res.status + ")");
+    const reader = res.body.getReader();
+    const dec = new TextDecoder();
+    let buf = "";
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      buf += dec.decode(value, { stream: true });
+      let idx;
+      while ((idx = buf.indexOf("\n\n")) >= 0) {
+        const frame = buf.slice(0, idx); buf = buf.slice(idx + 2);
+        const line = frame.split("\n").find(l => l.startsWith("data:"));
+        if (line) handle(JSON.parse(line.slice(5).trim()));
+      }
+    }
+  } catch (e) {
+    $("error").textContent = "Something went wrong: " + e.message;
+    $("error").classList.add("show");
+  } finally {
+    $("btn").disabled = false;
+    setStatus(false);
+  }
+}
+
+$("form").addEventListener("submit", (e) => { e.preventDefault(); submit(); });
+renderExamples();
+</script>
+</body>
+</html>
