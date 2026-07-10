@@ -21,3 +21,9 @@ __pycache__/
 # Frontend (added when we scaffold the UI)
 node_modules/
 dist/
+
+# Demo video (hosted via GitHub's CDN, not committed)
+*.mp4
+*.mov
+*.m4v
+*.webm
