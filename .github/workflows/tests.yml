@@ -1,0 +1,16 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  offline-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --frozen
+      # Chunker + citation-offset invariants + eval-set sanity. No API keys needed;
+      # the live eval (eval/run_eval.py) is run locally because it spends API credit.
+      - run: PYTHONPATH=backend uv run --with pytest pytest tests/ -q

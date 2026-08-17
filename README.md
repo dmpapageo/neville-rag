@@ -18,17 +18,17 @@ https://github.com/user-attachments/assets/caca88da-b1b2-4d26-9dfa-a33e4dc7eac4
 
 The pipeline has four stages:
 
-1. **Ingestion.** The book is extracted from PDF to clean text (layout-aware, preserving the author's terms), split with hybrid section-aware chunking (paragraph boundaries, capped at ~300-400 tokens with ~15% overlap), embedded with Voyage AI, and stored in Pinecone.
+1. **Ingestion.** The book is extracted from PDF to clean text (layout-aware, preserving the author's terms), split with hybrid section-aware chunking (paragraph boundaries, capped at 350 tokens with 15% overlap, sized with Voyage's own tokenizer — 30 chunks for this book), embedded with Voyage AI, and stored in Pinecone.
 2. **Retrieval.** A question is embedded (using query-type embeddings), matched against the stored chunks via cosine similarity in Pinecone, then reranked for precision.
 3. **Grounded generation.** The top passages plus the question are sent to Claude, which answers using only the provided text and cites its sources. Context isolation (the model only sees retrieved passages) plus a strict system prompt enforce grounding.
 4. **Web UI.** A lightweight frontend shows the streamed answer, its citations, and the source passages, with click-to-highlight linking each citation to its exact span in the text.
 
 ## Stack
 
-- **Generation:** Claude (Anthropic API)
-- **Embeddings:** Voyage AI (`voyage-3.5-lite`)
-- **Vector store:** Pinecone (serverless, cosine, 1024-dim)
-- **Reranking:** Voyage reranker
+- **Generation:** Claude (`claude-opus-4-8`, Anthropic API, native citations)
+- **Embeddings:** Voyage AI (`voyage-3.5-lite`, query/document asymmetric)
+- **Vector store:** Pinecone (serverless, cosine; top-10 candidates)
+- **Reranking:** Voyage `rerank-2.5-lite` cross-encoder (top-4 kept)
 - **Backend:** FastAPI
 - **Frontend:** plain HTML/CSS/JS (no build step)
 
@@ -44,6 +44,33 @@ Requires API keys for Anthropic, Voyage, and Pinecone.
    PYTHONPATH=backend uv run uvicorn app.main:app --port 8000
    ```
 5. Open `http://127.0.0.1:8000` and ask a question.
+
+## Evaluation
+
+Two layers, same idea as my [LLM eval harness](https://github.com/dmpapageo/llm-eval-harness): deterministic checks where possible, an LLM judge only for what can't be checked mechanically.
+
+**Offline tests** (`tests/`, run on every push in GitHub Actions, no keys): the chunker respects the token cap, overlaps inside a section, never crosses a section boundary, and — the property citation highlighting depends on — every chunk's `char_start`/`char_end` indexes back to its own text in the source file, for both synthetic input and the committed `data/chunks.jsonl`. It also checks that every gold phrase in the eval set really exists in the book.
+
+```
+PYTHONPATH=backend uv run --with pytest pytest tests/ -q
+```
+
+**Live eval** (`eval/run_eval.py`, run locally — it spends API credit): 20 hand-labelled questions in `eval/questions.json`, 16 answerable and 4 deliberately out of scope. Each answerable question carries *gold phrases* — exact sentences from the book that answer it — so grading needs no opinion about which chunk is "right":
+
+| Metric | How it's graded |
+|---|---|
+| Refusal accuracy | deterministic — refused exactly the out-of-scope questions |
+| Citation precision | deterministic — share of citations whose source span lands in a chunk containing a gold phrase |
+| Gold recall | deterministic — answerable questions with at least one grounded citation |
+| Faithfulness | LLM-as-judge (`claude-sonnet-5`, a different family than the answerer) — every claim supported by the retrieved passages, 1–5, with unsupported claims listed |
+| Coverage | deterministic, advisory — `must_mention` terms present |
+| Latency / tokens | measured — retrieval vs generation wall time, tokens per answer |
+
+Gates: refusal accuracy 100%, citation precision ≥ 90%, gold recall ≥ 90%, mean faithfulness ≥ 4.5, per-case faithfulness ≥ 4. The script exits 1 on any breach and writes `eval/results.json` and `eval/report.md`.
+
+```
+PYTHONPATH=backend uv run python eval/run_eval.py
+```
 
 ## Design notes
 

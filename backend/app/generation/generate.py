@@ -11,7 +11,8 @@ Keys come from app.config.settings (env). Nothing hardcoded.
 from __future__ import annotations
 
 import sys
-from dataclasses import dataclass
+import time
+from dataclasses import dataclass, field
 
 from anthropic import Anthropic
 
@@ -65,6 +66,8 @@ class Answer:
     text: str                 # answer with inline [n] citation markers
     citations: list[Citation]
     results: list[Result]     # what retrieval fed the model (for transparency)
+    timings_ms: dict = field(default_factory=dict)  # retrieval / generation wall time
+    usage: dict = field(default_factory=dict)       # input_tokens / output_tokens
 
 
 def _documents(results: list[Result]) -> list[dict]:
@@ -83,20 +86,23 @@ def _documents(results: list[Result]) -> list[dict]:
 
 
 def answer(question: str, *, top_k: int = TOP_K, top_n: int = TOP_N) -> Answer:
+    t0 = time.perf_counter()
     results = retrieve(question, top_k=top_k, top_n=top_n)
+    t1 = time.perf_counter()
     if not results:
-        return Answer(question, "No passages were retrieved for this question.", [], [])
+        return Answer(question, "No passages were retrieved for this question.", [], [],
+                      timings_ms={"retrieval": round((t1 - t0) * 1000)})
 
     content = _documents(results) + [{"type": "text", "text": f"Question: {question}"}]
     resp = _client.messages.create(
         model=MODEL,
         max_tokens=MAX_TOKENS,
-        # Sonnet 5 runs adaptive thinking by default when omitted; disable it to
-        # keep this grounded-extraction task fast (matches the prior no-thinking setup).
+        # Thinking is disabled to keep this grounded-extraction task fast.
         thinking={"type": "disabled"},
         system=SYSTEM,
         messages=[{"role": "user", "content": content}],
     )
+    t2 = time.perf_counter()
 
     text_out, citations = "", []
     for block in resp.content:
@@ -120,7 +126,11 @@ def answer(question: str, *, top_k: int = TOP_K, top_n: int = TOP_N) -> Answer:
     if resp.stop_reason == "max_tokens":
         text_out += "\n\n[note: answer hit the max_tokens cap and may be truncated]"
 
-    return Answer(question, text_out, citations, results)
+    return Answer(
+        question, text_out, citations, results,
+        timings_ms={"retrieval": round((t1 - t0) * 1000), "generation": round((t2 - t1) * 1000)},
+        usage={"input_tokens": resp.usage.input_tokens, "output_tokens": resp.usage.output_tokens},
+    )
 
 
 def stream_answer(question: str, *, top_k: int = TOP_K, top_n: int = TOP_N):

@@ -1,0 +1,177 @@
+[
+  {
+    "id": "two-aspects",
+    "question": "What are the two aspects of consciousness, and how do they relate to each other?",
+    "expect": "answer",
+    "gold_phrases": [
+      "The conscious is personal and selective; the subconscious is impersonal and non-selective",
+      "The conscious generates ideas and impresses these ideas on the subconscious"
+    ],
+    "must_mention": ["conscious", "subconscious"]
+  },
+  {
+    "id": "how-ideas-impressed",
+    "question": "According to the book, how are ideas impressed on the subconscious?",
+    "expect": "answer",
+    "gold_phrases": [
+      "Ideas are impressed on the subconscious through the medium of feeling",
+      "Feeling is the one and only medium through which ideas are conveyed to the subconscious"
+    ],
+    "must_mention": ["feeling"]
+  },
+  {
+    "id": "dominant-feeling",
+    "question": "What does the book mean by 'the dominant of two feelings'?",
+    "expect": "answer",
+    "gold_phrases": [
+      "The dominant of two feelings is the one expressed. I am healthy is a stronger feeling than I will be healthy"
+    ],
+    "must_mention": ["dominant"]
+  },
+  {
+    "id": "disease-cause",
+    "question": "What does the book say causes disease?",
+    "expect": "answer",
+    "gold_phrases": [
+      "Emotional disturbances, especially suppressed emotions, are the causes of all disease"
+    ],
+    "must_mention": ["emotion"]
+  },
+  {
+    "id": "servant-vs-wife",
+    "question": "Why does the book compare the subconscious to a wife rather than a servant?",
+    "expect": "answer",
+    "gold_phrases": [
+      "the subconscious has a distinct distaste for compulsion and responds to persuasion rather than to command"
+    ],
+    "must_mention": ["persuasion"]
+  },
+  {
+    "id": "sleep-role",
+    "question": "What role does sleep play according to the book?",
+    "expect": "answer",
+    "gold_phrases": [
+      "SLEEP, the life that occupies one-third of our stay on earth, is the natural door into the subconscious",
+      "In sleep, man impresses the subconscious with his conception of himself"
+    ],
+    "must_mention": ["subconscious"]
+  },
+  {
+    "id": "before-sleep",
+    "question": "What should you do right before falling asleep?",
+    "expect": "answer",
+    "gold_phrases": [
+      "you should always feel the wish fulfilled before you drop off to sleep",
+      "Feel yourself in the state of the realized wish and quietly drop off to sleep"
+    ],
+    "must_mention": ["wish"]
+  },
+  {
+    "id": "body-position",
+    "question": "What physical position does the book recommend when preparing for sleep or prayer?",
+    "expect": "answer",
+    "gold_phrases": [
+      "Lie flat on your back with your head on a level with your body",
+      "lie flat on your back with your head on a level with your body, close the eyes and imagine that you are sleepy"
+    ],
+    "must_mention": ["flat", "back"]
+  },
+  {
+    "id": "signs-follow",
+    "question": "What does the book mean by 'signs follow, they do not precede'?",
+    "expect": "answer",
+    "gold_phrases": [
+      "Proof that you are will follow the consciousness that you are; it will not precede it"
+    ],
+    "must_mention": ["follow"]
+  },
+  {
+    "id": "free-will",
+    "question": "What does the book say about free will?",
+    "expect": "answer",
+    "gold_phrases": [
+      "Free will is only freedom of choice",
+      "Your only freedom, then, is your freedom of reaction"
+    ],
+    "must_mention": ["freedom"]
+  },
+  {
+    "id": "regret",
+    "question": "What does the book say about regret?",
+    "expect": "answer",
+    "gold_phrases": [
+      "Do not entertain the feeling of regret or failure",
+      "Do not waste one moment in regret, for to think feelingly of the mistakes of the past is to reinfect yourself"
+    ],
+    "must_mention": ["regret"]
+  },
+  {
+    "id": "prayer-definition",
+    "question": "How does the book define prayer?",
+    "expect": "answer",
+    "gold_phrases": [
+      "PRAYER, like sleep, is also an entrance into the subconscious",
+      "Prayer is the art of assuming the feeling of being and having that which you want",
+      "Prayer is the art of yielding to the wish and not the forcing of the wish"
+    ],
+    "must_mention": ["subconscious"]
+  },
+  {
+    "id": "effort-in-prayer",
+    "question": "Why does the book say effort is harmful in prayer?",
+    "expect": "answer",
+    "gold_phrases": [
+      "Prayer must be without effort. In attempting to fix an attitude of mind which is denied by the senses, effort is fatal",
+      "the harder you try, the less you are able to yield to the wish"
+    ],
+    "must_mention": ["effort"]
+  },
+  {
+    "id": "passive-state",
+    "question": "How do you create the passive state the book describes for prayer?",
+    "expect": "answer",
+    "gold_phrases": [
+      "An easy way to create this passive state is to relax in a comfortable chair or on a bed",
+      "Feel – I am sleepy, so sleepy, so very sleepy"
+    ],
+    "must_mention": ["sleepy"]
+  },
+  {
+    "id": "faith-is-feeling",
+    "question": "What is faith, according to the final chapter?",
+    "expect": "answer",
+    "gold_phrases": [
+      "Faith is feeling"
+    ],
+    "must_mention": ["feeling"]
+  },
+  {
+    "id": "no-testimonials",
+    "question": "Why did the author leave arguments and testimonials out of the book?",
+    "expect": "answer",
+    "gold_phrases": [
+      "I have purposely omitted all arguments and testimonials, and simply challenge the open-minded reader to practice the law of consciousness"
+    ],
+    "must_mention": ["practice"]
+  },
+  {
+    "id": "refuse-diet",
+    "question": "What does the book say about diet and exercise?",
+    "expect": "refuse"
+  },
+  {
+    "id": "refuse-biography",
+    "question": "Where was Neville Goddard born and what did he do before writing?",
+    "expect": "refuse"
+  },
+  {
+    "id": "refuse-investing",
+    "question": "What is the book's advice on stock market investing?",
+    "expect": "refuse"
+  },
+  {
+    "id": "refuse-astrology",
+    "question": "Does the book discuss astrology or horoscopes?",
+    "expect": "refuse"
+  }
+]
