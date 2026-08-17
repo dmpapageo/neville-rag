@@ -1,0 +1,840 @@
+{
+  "generated_at": "2026-08-17T08:03:57+00:00",
+  "answer_model": "claude-opus-4-8",
+  "judge_model": "claude-sonnet-5",
+  "thresholds": {
+    "min_refusal_accuracy": 1.0,
+    "min_citation_precision": 0.9,
+    "min_gold_recall": 0.9,
+    "min_mean_faithfulness": 4.5,
+    "min_faithfulness_per_case": 4
+  },
+  "gates": {
+    "min_refusal_accuracy": true,
+    "min_citation_precision": true,
+    "min_gold_recall": true,
+    "min_mean_faithfulness": true,
+    "min_faithfulness_per_case": true
+  },
+  "passed": true,
+  "metrics": {
+    "n_cases": 20,
+    "n_answerable": 16,
+    "n_refuse": 4,
+    "refusal_accuracy": 1.0,
+    "citation_precision": 0.97,
+    "citations_total": 99,
+    "citations_grounded": 96,
+    "gold_recall": 1.0,
+    "coverage_full_rate": 1.0,
+    "mean_faithfulness": 4.94,
+    "min_faithfulness": 4,
+    "hallucinated_cases": [
+      "faith-is-feeling"
+    ],
+    "latency_ms": {
+      "retrieval_p50": 1596.0,
+      "retrieval_max": 2624,
+      "generation_p50": 8066.0,
+      "generation_max": 14659
+    },
+    "tokens": {
+      "input": 78289,
+      "output": 11158,
+      "per_answer_input": 3914,
+      "per_answer_output": 558
+    }
+  },
+  "cases": [
+    {
+      "id": "two-aspects",
+      "question": "What are the two aspects of consciousness, and how do they relate to each other?",
+      "expect": "answer",
+      "refused": false,
+      "n_citations": 11,
+      "timings_ms": {
+        "retrieval": 2624,
+        "generation": 14659,
+        "total": 17284
+      },
+      "usage": {
+        "input_tokens": 4172,
+        "output_tokens": 1175
+      },
+      "answer": "According to the book, consciousness itself is the fundamental reality, and it can be understood as a single stream that divides into two parts. Consciousness is the one and only reality, and for clarity it can be likened to a stream divided into two parts: the conscious and the subconscious. [1]\n\n**The nature of each aspect**\n\nThese two have distinct characteristics. The conscious is personal and selective, while the subconscious is impersonal and non-selective. The conscious is the realm of effect, while the subconscious is the realm of cause. [2] Goddard also frames them in gendered terms: these two aspects are the male and female divisions of consciousness—the conscious is male, and the subconscious is female. [3]\n\n**How they work together**\n\nThe relationship is essentially one of impression and expression. The conscious generates ideas and impresses these ideas on the subconscious; the subconscious receives ideas and gives form and expression to them. [4] In other words, the conscious impresses the subconscious, while the subconscious expresses all that is impressed upon it. The subconscious does not originate ideas, but accepts as true those which the conscious mind feels to be true and, in a way known only to itself, objectifies the accepted ideas. [5]\n\nThis is why creation follows a specific sequence. By first conceiving an idea and then impressing that idea on the subconscious, all things evolve out of consciousness—and without this sequence, nothing is made that is made. [6]\n\n**The quality of their relationship**\n\nAlthough the conscious mind leads, the book is careful to describe this not as domination by force. While older traditions cast the subconscious as a mere servant or slave, Goddard corrects this: the subconscious does serve man and faithfully gives form to his feelings, but it has a distinct distaste for compulsion and responds to persuasion rather than command—so it resembles the beloved wife more than the servant. [7] Thus, the conscious or male aspect truly is the head and dominates the subconscious or female aspect—however, this leadership is not that of the tyrant, but of the lover. [8]\n\n**Ultimately one**\n\nDespite this apparent division, the two are not truly separate. Consciousness is really one and undivided, but for creation's sake it appears to be divided into two. [9]\n\n**The practical key: feeling**\n\nThe crucial insight is that ideas only take hold in the subconscious through *feeling*. By assuming the feeling that would be yours were you already in possession of your objective, the subconscious is moved to build the exact likeness of your assumption. Your desires are not subconsciously accepted until you assume the feeling of their reality, for only through feeling is an idea subconsciously accepted, and only through this subconscious acceptance is it ever expressed. [10]\n\nBecause of this, the outer world becomes a mirror of the inner state. It is easier to ascribe your feeling to events in the world than to admit that the conditions of the world reflect your feeling—yet it is eternally true that the outside mirrors the inside: \"As within, so without.\" [11]",
+      "cited_chunks": [
+        1,
+        8,
+        9
+      ],
+      "retrieved_chunks": [
+        1,
+        9,
+        8,
+        12
+      ],
+      "grounded_citations": 11,
+      "coverage_hit": [
+        "conscious",
+        "subconscious"
+      ],
+      "coverage_miss": [],
+      "gold_chunks": [
+        1,
+        7,
+        8,
+        9
+      ],
+      "judge": {
+        "faithfulness": 5,
+        "unsupported_claims": [],
+        "rationale": "All claims in the answer directly correspond to statements in the passages: the stream metaphor, personal/selective vs impersonal/non-selective, realm of effect vs cause, male/female framing, impression/expression relationship, the sequence of conceiving then impressing, the servant/beloved wife distinction and 'leadership of the lover not tyrant', the unity of consciousness despite apparent division, the role of feeling in subconscious acceptance, and the 'as within, so without' mirroring principle. No added facts, comparisons, or conclusions beyond the text were found."
+      }
+    },
+    {
+      "id": "how-ideas-impressed",
+      "question": "According to the book, how are ideas impressed on the subconscious?",
+      "expect": "answer",
+      "refused": false,
+      "n_citations": 8,
+      "timings_ms": {
+        "retrieval": 1526,
+        "generation": 8926,
+        "total": 10453
+      },
+      "usage": {
+        "input_tokens": 4034,
+        "output_tokens": 649
+      },
+      "answer": "According to Neville Goddard, ideas reach the subconscious through one gateway only: feeling. Feeling is the one and only medium through which ideas are conveyed to the subconscious. [1] In fact, no idea can be impressed on the subconscious until it is felt, but once felt—whether good, bad, or indifferent—it must be expressed. [2]\n\nThis works through the relationship between the two aspects of consciousness. The conscious mind generates ideas and impresses them on the subconscious, while the subconscious receives ideas and gives form and expression to them. [3] Importantly, the subconscious does not originate ideas, but accepts as true those which the conscious mind feels to be true and, in a way known only to itself, objectifies the accepted ideas. [4]\n\nThe practical takeaway is that simply thinking about something isn't enough—you have to feel it. To think feelingly on any state impresses it on the subconscious. [5] More specifically, to impress the subconscious with a desirable state, you must assume the feeling that would be yours had you already realized your wish. [6]\n\nThere's an important caution here, too. Because the subconscious accepts whatever you genuinely feel, you can just as easily impress it with undesirable states. If you dwell on difficulties, barriers, or delay, the subconscious—by its very non-selective nature—accepts the feeling of difficulties and obstacles as your request and proceeds to produce them in your outer world. [7] This is why controlling your feelings matters so much—not through suppression, but through disciplining yourself to imagine and entertain only such feeling as contributes to your happiness. [8]",
+      "cited_chunks": [
+        1,
+        2,
+        6
+      ],
+      "retrieved_chunks": [
+        2,
+        6,
+        1,
+        7
+      ],
+      "grounded_citations": 8,
+      "coverage_hit": [
+        "feeling"
+      ],
+      "coverage_miss": [],
+      "gold_chunks": [
+        1,
+        2,
+        6
+      ],
+      "judge": {
+        "faithfulness": 5,
+        "unsupported_claims": [],
+        "rationale": "All claims in the answer are directly supported by the passages, using close paraphrase or direct quotes: feeling as the sole medium for impressing the subconscious, the conscious/subconscious relationship (conscious generates ideas, subconscious gives form), the subconscious not originating but accepting ideas as true, the need to assume the feeling of the wish fulfilled, the danger of dwelling on difficulties impressing the subconscious with obstacles, and the guidance on disciplined control of feeling rather than suppression. The attribution to 'Neville Goddard' is a reasonable inference since the passages are clearly from his work (chapter titled 'Law and Its Operation', concepts like 'assume the feeling of the wish fulfilled' are signature Neville Goddard terminology), though the author's name isn't explicitly stated in the passages themselves - this is a minor addition but a very safe/standard inference for this well-known text and doesn't constitute an unsupported factual claim about content."
+      }
+    },
+    {
+      "id": "dominant-feeling",
+      "question": "What does the book mean by 'the dominant of two feelings'?",
+      "expect": "answer",
+      "refused": false,
+      "n_citations": 4,
+      "timings_ms": {
+        "retrieval": 1755,
+        "generation": 8570,
+        "total": 10325
+      },
+      "usage": {
+        "input_tokens": 4042,
+        "output_tokens": 514
+      },
+      "answer": "When Neville talks about \"the dominant of two feelings,\" he's pointing to a basic principle of how the subconscious works: every feeling leaves an impression on the subconscious, and unless it's counteracted by a more powerful feeling of an opposite nature, it must be expressed. [1] In other words, when two opposing feelings are present, the stronger one wins out and is the one that actually manifests in your life.\n\nHe gives a concrete example to illustrate this. \"I am healthy\" is a stronger feeling than \"I will be healthy.\" To feel \"I will be\" is really to confess that you are not; and \"I am\" is stronger than \"I am not.\" [2] The feeling of already possessing something carries more force than the feeling of merely wanting or hoping for it in the future.\n\nThe practical takeaway is this: what you feel you *are* always dominates what you feel you would *like* to be. So for a wish to be realized, it must be felt as a state that already exists rather than a state that is still absent. [3]\n\nThis is why Neville stresses that feeling, not effort or desire, is decisive. Whenever your feeling is in conflict with your wish, feeling will be the victor. The dominant feeling invariably expresses itself. [4] The goal, then, is to make the feeling of your fulfilled desire the dominant one, so that it — rather than any competing feeling of lack — becomes what takes shape in your world.",
+      "cited_chunks": [
+        3,
+        4,
+        23
+      ],
+      "retrieved_chunks": [
+        4,
+        3,
+        23,
+        20
+      ],
+      "grounded_citations": 4,
+      "coverage_hit": [
+        "dominant"
+      ],
+      "coverage_miss": [],
+      "gold_chunks": [
+        3,
+        4,
+        23,
+        24
+      ],
+      "judge": {
+        "faithfulness": 5,
+        "unsupported_claims": [],
+        "rationale": "All claims in the answer are directly supported by the passages: the idea that unexpressed feelings must be expressed unless counteracted by a stronger opposite feeling (passage 2), the specific example of 'I am healthy' vs 'I will be healthy' and 'I am' being stronger than 'I am not' (passages 1 and 2), the statement that what you feel you are dominates what you feel you'd like to be, and that the wish must be felt as a present state (passages 1 and 2), and the quote about feeling being victor when in conflict with wish, and the dominant feeling invariably expressing itself (passage 3). No additional facts or unsupported conclusions are introduced."
+      }
+    },
+    {
+      "id": "disease-cause",
+      "question": "What does the book say causes disease?",
+      "expect": "answer",
+      "refused": false,
+      "n_citations": 4,
+      "timings_ms": {
+        "retrieval": 1569,
+        "generation": 6644,
+        "total": 8213
+      },
+      "usage": {
+        "input_tokens": 3954,
+        "output_tokens": 346
+      },
+      "answer": "According to the book, disease originates in the emotional realm rather than the purely physical one. Emotional disturbances, and especially suppressed emotions, are described as the causes of all disease. [1]\n\nMore specifically, the problem arises when you feel strongly about something being wrong but hold that feeling inside. To feel intensely about a wrong without voicing or expressing that feeling is the beginning of disease – dis-ease – in both body and environment. [2]\n\nThe book also warns against certain negative emotional states, noting that entertaining feelings of regret, failure, frustration, or detachment from your objective results in disease. [3]\n\nUnderlying all of this is the idea that your body reflects your inner emotional life. There is an unbroken connection between your feelings and your visible world—your body acts as an emotional filter and bears the unmistakable marks of your prevalent emotions. [4]",
+      "cited_chunks": [
+        4
+      ],
+      "retrieved_chunks": [
+        4,
+        21,
+        3,
+        12
+      ],
+      "grounded_citations": 4,
+      "coverage_hit": [
+        "emotion"
+      ],
+      "coverage_miss": [],
+      "gold_chunks": [
+        4
+      ],
+      "judge": {
+        "faithfulness": 5,
+        "unsupported_claims": [],
+        "rationale": "All claims in the answer directly correspond to statements in Passage 1: emotional disturbances/suppressed emotions cause disease; feeling intensely about a wrong without expressing it begins disease; regret/failure/frustration/detachment lead to disease; the body is an emotional filter with an unbroken connection between feelings and the visible world. No additional or unsupported facts are introduced."
+      }
+    },
+    {
+      "id": "servant-vs-wife",
+      "question": "Why does the book compare the subconscious to a wife rather than a servant?",
+      "expect": "answer",
+      "refused": false,
+      "n_citations": 5,
+      "timings_ms": {
+        "retrieval": 1741,
+        "generation": 9523,
+        "total": 11265
+      },
+      "usage": {
+        "input_tokens": 3887,
+        "output_tokens": 631
+      },
+      "answer": "The book makes this comparison to correct an ancient misunderstanding about how the subconscious relates to us. While earlier prophets thought of the subconscious as a slave or servant of man [1], Neville argues this framing misses something essential about its nature.\n\nThe key distinction lies in how the subconscious responds to us. The subconscious has a distinct distaste for compulsion and responds to persuasion rather than to command; consequently, it resembles the beloved wife more than the servant. [2] In other words, you can't bully or order your subconscious into producing results — you have to win it over, much as you would a loved one rather than a hired hand.\n\nThis ties into Neville's broader picture of consciousness as having two aspects that work together. He explains that what looks like the relationship between husband and wife is really the relationship between the conscious and the subconscious — the male and female aspects of consciousness. Consciousness is really one and undivided, but for creation's sake it appears to be divided into two. [3]\n\nAnd even though the conscious mind leads in this partnership, its authority isn't domineering. The conscious or male aspect truly is the head and dominates the subconscious or female aspect. However, this leadership is not that of the tyrant, but of the lover. [4]\n\nThe \"wife\" imagery also captures something about the subconscious's devotion. Unlike a spouse who tries to reform their partner, the subconscious has no desire to change the conscious, waking state, but loves it as it is and faithfully reproduces its likeness in the outer world of form. [5] It receives whatever feeling you give it and gives it form without alteration, which is why the relationship is best understood as one of loving cooperation rather than servitude.",
+      "cited_chunks": [
+        7,
+        8,
+        9,
+        12
+      ],
+      "retrieved_chunks": [
+        8,
+        7,
+        9,
+        12
+      ],
+      "grounded_citations": 5,
+      "coverage_hit": [
+        "persuasion"
+      ],
+      "coverage_miss": [],
+      "gold_chunks": [
+        7,
+        8,
+        9,
+        12
+      ],
+      "judge": {
+        "faithfulness": 5,
+        "unsupported_claims": [],
+        "rationale": "The answer's claims are all directly drawn from the passages: the ancient view of subconscious as slave/servant (passage 2), its dislike of compulsion and preference for persuasion making it like a wife (passage 2), the conscious/subconscious as male/female aspects of one undivided consciousness (passage 3), the conscious as head but leading like a lover not a tyrant (passage 1/3), and the subconscious not seeking to change the conscious but loving it as is and faithfully reproducing its likeness (passage 4). No claims are added beyond what the passages support, and the attribution to Neville (the author) is a reasonable paraphrase given the text is clearly his authored work."
+      }
+    },
+    {
+      "id": "sleep-role",
+      "question": "What role does sleep play according to the book?",
+      "expect": "answer",
+      "refused": false,
+      "n_citations": 11,
+      "timings_ms": {
+        "retrieval": 1534,
+        "generation": 14470,
+        "total": 16004
+      },
+      "usage": {
+        "input_tokens": 4276,
+        "output_tokens": 1156
+      },
+      "answer": "In \"Feeling Is the Secret,\" sleep is far more than physical rest—it's the essential gateway to your creative power.\n\n**Sleep as a doorway to the subconscious.** Goddard describes sleep as the natural door into the subconscious [1]. He portrays it as a kind of romantic union: sleep is the door through which the conscious, waking mind passes to be creatively joined to the subconscious. [2] In this framework, the waking mind is the \"male\" and the subconscious the \"female,\" and sleep is the time when the male or conscious mind turns from the world of sense to seek its lover or subconscious self. [3]\n\n**Where impressions are made.** It is precisely during sleep that we plant the seeds of our future. In sleep, man impresses the subconscious with his conception of himself. [4] Importantly, the subconscious itself never rests—the subconscious never sleeps. Sleep is the door through which the conscious, waking mind passes to be creatively joined to the subconscious. [5]\n\n**Sleep shapes tomorrow's reality.** The state of mind you carry into sleep determines the events of your waking life. As Goddard puts it, by feeling your wish fulfilled and quietly relaxing into sleep, you cast yourself in a star role to be played on earth tomorrow, and, while asleep, you are rehearsed and instructed in your part. [6] The circumstances of your days are essentially \"children\" born from the impressions you made in sleep—the conditions and events of your life are your children formed from the molds of your subconscious impressions in sleep. They are made in the image and likeness of your innermost feeling that they may reveal you to yourself. [7]\n\n**Why intention matters.** This is why Goddard urges deliberate preparation before sleep. Unless you consciously and purposely define the attitude of mind with which you go to sleep, you unconsciously go to sleep in the composite attitude of mind made up of all feelings and reactions of the day. [8] If you fail to consciously assume the feeling of your fulfilled wish, you instead carry in the leftover reactions of your day, and you will rise believing that you are a free agent, not realizing that every action and event of the day is predetermined by your concept of self as you fell asleep. [9]\n\n**The practical method.** Goddard's practical advice flows directly from this understanding: Night after night, you should assume the feeling of being, having and witnessing that which you seek to be, possess and see manifested. Never go to sleep feeling discouraged or dissatisfied. Never sleep in the consciousness of failure. [10] The technique itself is simple—this is the way to discover and conduct your wishes into the subconscious. Feel yourself in the state of the realized wish and quietly drop off to sleep. [11]\n\nIn short, the book treats sleep as the creative act itself—the private moment where your inner feeling is quietly stamped onto the subconscious, which then faithfully reproduces that feeling as the outer conditions of your life.",
+      "cited_chunks": [
+        12,
+        15,
+        16,
+        20
+      ],
+      "retrieved_chunks": [
+        12,
+        20,
+        15,
+        16
+      ],
+      "grounded_citations": 11,
+      "coverage_hit": [
+        "subconscious"
+      ],
+      "coverage_miss": [],
+      "gold_chunks": [
+        12,
+        15,
+        16,
+        19,
+        20
+      ],
+      "judge": {
+        "faithfulness": 5,
+        "unsupported_claims": [],
+        "rationale": "The answer's claims are all directly drawn from and closely paraphrase the passages: sleep as the natural door into the subconscious, the romantic/male-female metaphor, sleep as creative joining, impressions made during sleep, the subconscious never sleeping, the 'star role' and rehearsal language, life's conditions as 'children' of subconscious impressions, the need for conscious intention before sleep versus unconscious composite feelings, and the practical advice to feel the wish fulfilled and never sleep in discouragement. All quoted lines match the passages verbatim or near-verbatim, and the summarizing conclusions (sleep as 'the creative act' where feeling is stamped onto the subconscious) are reasonable syntheses of passage 3's line 'Sleep conceals the creative act' and the overall theme. No fabricated facts, comparisons, or claims beyond the text are introduced."
+      }
+    },
+    {
+      "id": "before-sleep",
+      "question": "What should you do right before falling asleep?",
+      "expect": "answer",
+      "refused": false,
+      "n_citations": 8,
+      "timings_ms": {
+        "retrieval": 1549,
+        "generation": 10650,
+        "total": 12199
+      },
+      "usage": {
+        "input_tokens": 4313,
+        "output_tokens": 725
+      },
+      "answer": "Right before falling asleep, the key practice is to inhabit the feeling of your desire already being fulfilled. To realize a wish, it must be resolved into the feeling of being or having or witnessing the state you seek—and this is accomplished by assuming the feeling of the wish fulfilled. [1]\n\nA helpful way to summon this feeling is to ask yourself a simple question. The feeling that comes in response to \"How would I feel were my wish realized?\" is the feeling that should completely occupy your attention as you relax into sleep. You must be in the consciousness of being or having what you want before you drop off. [2]\n\nThere's a practical, physical component too. Goddard advises you to lie flat on your back with your head on a level with your body, feel as you would if you already possessed your wish, and quietly relax into unconsciousness. [3]\n\nYour emotional state at this moment matters enormously, because once asleep, you have no freedom of choice—your entire slumber is dominated by your last waking concept of yourself. [4] For this reason, you should never go to sleep feeling discouraged or dissatisfied, and never sleep in the consciousness of failure. [5] Instead, the idea is to enter sleep in a mood of accomplishment and gratitude—an attitude Goddard captures with phrases like \"Come before me with singing and thanksgiving.\" [6]\n\nThe reasoning behind all this is that sleep is when your inner mind takes the impression you've given it. Your subconscious sees you as you believe yourself to be—whether good, bad, or indifferent—and faithfully embodies that belief; as you feel, so you impress it, and it gives form to those impressions and out-pictures them in your life. [7] So the practice is to disregard appearances and feel that things are as you wish them to be. [8]",
+      "cited_chunks": [
+        13,
+        14,
+        15,
+        16
+      ],
+      "retrieved_chunks": [
+        14,
+        16,
+        15,
+        13
+      ],
+      "grounded_citations": 8,
+      "coverage_hit": [
+        "wish"
+      ],
+      "coverage_miss": [],
+      "gold_chunks": [
+        13,
+        14,
+        15,
+        16
+      ],
+      "judge": {
+        "faithfulness": 5,
+        "unsupported_claims": [],
+        "rationale": "All claims in the answer are directly supported by the passages: the instruction to assume the feeling of the wish fulfilled, the question 'How would I feel were my wish realized?', the physical posture (lying flat on back, head level with body), the idea that once asleep there is no freedom of choice and slumber is dominated by the last waking concept of self, the instruction to never sleep in discouragement/dissatisfaction/failure, the scriptural quote about coming with singing and thanksgiving, and the description of the subconscious seeing you as you believe yourself to be and out-picturing impressions. The attribution to 'Goddard' is a reasonable inference about authorship style but not explicitly stated in passages; however this is a minor attribution not a substantive factual claim beyond the text's content, and doesn't add unsupported facts about the doctrine itself. Overall the answer stays faithful to the passages."
+      }
+    },
+    {
+      "id": "body-position",
+      "question": "What physical position does the book recommend when preparing for sleep or prayer?",
+      "expect": "answer",
+      "refused": false,
+      "n_citations": 3,
+      "timings_ms": {
+        "retrieval": 1685,
+        "generation": 5642,
+        "total": 7327
+      },
+      "usage": {
+        "input_tokens": 4019,
+        "output_tokens": 394
+      },
+      "answer": "The book gives a specific and consistent physical instruction for both sleep and prayer: lie flat on your back with your head on a level with your body, then feel as you would if you already possessed your wish and quietly relax into unconsciousness. [1]\n\nThe same posture is recommended for entering the passive, meditative state used in prayer. Neville suggests you relax in a comfortable chair or on a bed. If on a bed, lie flat on your back with your head on a level with your body, close the eyes and imagine that you are sleepy — feeling \"I am sleepy, so sleepy, so very sleepy.\" [2]\n\nThe purpose of this relaxed position is to bring you into a receptive frame of mind. In a little while, a faraway feeling accompanied by a general lassitude and loss of all desire to move envelops you. You feel a pleasant, comfortable rest and are not inclined to alter your position, although under other circumstances you would not be at all comfortable. [3] Once in that state, you then imagine and feel your wish already fulfilled.",
+      "cited_chunks": [
+        15,
+        25
+      ],
+      "retrieved_chunks": [
+        15,
+        24,
+        25,
+        14
+      ],
+      "grounded_citations": 3,
+      "coverage_hit": [
+        "flat",
+        "back"
+      ],
+      "coverage_miss": [],
+      "gold_chunks": [
+        14,
+        15,
+        24,
+        25
+      ],
+      "judge": {
+        "faithfulness": 5,
+        "unsupported_claims": [],
+        "rationale": "All claims in the answer are directly supported by the passages. The lying flat on back with head level instruction appears in passages 1 and 4. The chair/bed alternative and closing eyes while imagining sleepiness appear in passage 2. The description of the passive state (faraway feeling, lassitude, comfortable rest, not inclined to alter position) is directly quoted from passage 3. The final step of imagining the wish fulfilled is supported by passages 3 and 4. No extraneous or unsupported facts are introduced."
+      }
+    },
+    {
+      "id": "signs-follow",
+      "question": "What does the book mean by 'signs follow, they do not precede'?",
+      "expect": "answer",
+      "refused": false,
+      "n_citations": 5,
+      "timings_ms": {
+        "retrieval": 1636,
+        "generation": 7786,
+        "total": 9423
+      },
+      "usage": {
+        "input_tokens": 4006,
+        "output_tokens": 464
+      },
+      "answer": "This phrase captures one of the book's core principles about the sequence of manifestation. When Neville says \"Signs follow, they do not precede,\" [1][2] he means that the external evidence of what you want always comes *after* your inner state, never before it.\n\nIn other words, you shouldn't wait for proof in the outer world before adopting the feeling of already having what you desire. As the book puts it, proof that you are will follow the consciousness that you are; it will not precede it. [3]\n\nThis connects directly to the book's larger teaching about the relationship between inner and outer reality. Neville argues that the outer world is a reflection of your inner state, so the inner change must come first: it is easier to ascribe your feeling to events in the world than to admit that the conditions of the world reflect your feeling—however, it is eternally true that the outside mirrors the inside. [4]\n\nThe practical implication is that you must assume the desired feeling now, without waiting for visible confirmation. You are to disregard appearances and feel that things are as you wish them to be—because to assume the feeling of satisfaction is to call into being the conditions that will mirror that satisfaction. [5] The visible \"signs\" are the effect, and your inner feeling is the cause that must come first.",
+      "cited_chunks": [
+        10,
+        16,
+        17
+      ],
+      "retrieved_chunks": [
+        17,
+        16,
+        21,
+        10
+      ],
+      "grounded_citations": 4,
+      "coverage_hit": [
+        "follow"
+      ],
+      "coverage_miss": [],
+      "gold_chunks": [
+        11,
+        17
+      ],
+      "judge": {
+        "faithfulness": 5,
+        "unsupported_claims": [],
+        "rationale": "The answer accurately explains the phrase \"signs follow, they do not precede\" using direct support from passage 1 (\"Proof that you are will follow the consciousness that you are; it will not precede it\") and connects it to the inner/outer relationship supported by passage 4 (\"it is easier to ascribe your feeling to events in the world... the outside mirrors the inside\") and passage 1's \"disregard appearances... assume the feeling of satisfaction is to call conditions into being which will mirror satisfaction.\" All claims are paraphrases or direct quotes from the passages, with no added facts, comparisons, or unsupported conclusions."
+      }
+    },
+    {
+      "id": "free-will",
+      "question": "What does the book say about free will?",
+      "expect": "answer",
+      "refused": false,
+      "n_citations": 7,
+      "timings_ms": {
+        "retrieval": 1607,
+        "generation": 9928,
+        "total": 11535
+      },
+      "usage": {
+        "input_tokens": 3914,
+        "output_tokens": 694
+      },
+      "answer": "According to the book, our sense of free will is largely an illusion. Neville states plainly that free will is only freedom of choice. [1]\n\nWhat we actually get to choose is our inner state or mood. Drawing on the biblical phrase \"Choose ye this day whom ye shall serve,\" Neville explains that this represents your freedom to choose the kind of mood you assume; but the expression of that mood is the secret of the subconscious. [2] In other words, you can select your feeling, but once that feeling is impressed on the subconscious, how it plays out is beyond your conscious control.\n\nNeville argues that our belief in true freedom of action comes from ignorance. The illusion of free will, the belief in freedom of action, is simply ignorance of the causes that make us act. A person thinks himself free because he has forgotten the link between himself and the event. [3]\n\nThe reason is that our waking actions are already set by the subconscious impressions we carry. When awake, a person is under compulsion to express his subconscious impressions. [4] This is tied directly to the state you fall asleep in. As Neville puts it, you will rise believing that you are a free agent, not realizing that every action and event of the day is predetermined by your concept of self as you fell asleep. [5]\n\nSo where does genuine freedom lie? Neville narrows it down to how we respond: your only freedom is your freedom of reaction. You are free to choose how you feel and react to the day's drama, but the drama itself—the actions, events and circumstances—has already been determined. [6]\n\nThe practical takeaway is that this \"freedom of choice\" is a creative power to be used deliberately. Ideas enveloped in feeling are creative actions. Use your divine right wisely. Through your ability to think and feel, you have dominion over all creation. [7]",
+      "cited_chunks": [
+        18,
+        19,
+        20
+      ],
+      "retrieved_chunks": [
+        18,
+        19,
+        20,
+        0
+      ],
+      "grounded_citations": 7,
+      "coverage_hit": [
+        "freedom"
+      ],
+      "coverage_miss": [],
+      "gold_chunks": [
+        18,
+        19,
+        20
+      ],
+      "judge": {
+        "faithfulness": 5,
+        "unsupported_claims": [],
+        "rationale": "Every claim in the answer directly corresponds to statements in the passages: free will as freedom of choice (passage 1), choosing mood via Joshua 24:15 quote (passages 1/2), illusion of free will as ignorance of causes and forgetting the link between self and event (passage 2), compulsion to express subconscious impressions while awake (passage 2), rising believing one is a free agent while actions are predetermined by concept of self at sleep (passage 3), freedom of reaction only (passage 3), and ideas enveloped in feeling as creative actions with dominion through thought and feeling (passage 3). No added facts, comparisons, or conclusions beyond the text are introduced."
+      }
+    },
+    {
+      "id": "regret",
+      "question": "What does the book say about regret?",
+      "expect": "answer",
+      "refused": false,
+      "n_citations": 6,
+      "timings_ms": {
+        "retrieval": 1491,
+        "generation": 8165,
+        "total": 9657
+      },
+      "usage": {
+        "input_tokens": 4108,
+        "output_tokens": 544
+      },
+      "answer": "The book is quite direct about regret: it warns against it entirely, treating it as actively harmful rather than merely unproductive.\n\nThe core reason is that dwelling on past mistakes with emotion re-plants those very mistakes in your subconscious. As Goddard puts it, to think feelingly of the mistakes of the past is to reinfect yourself. [1] Because of this, he urges you to not waste one moment in regret [2], and instead to turn from appearances and assume the feeling that would be yours were you already the one you wish to be. [3]\n\nRegret is also tied to physical and environmental well-being. The book lists it among the emotional states that can cause harm, advising that you do not entertain the feeling of regret or failure, for frustration or detachment from your objective results in disease. [4]\n\nThe underlying principle is that your feelings shape your reality, so any emotion you nurse—including regret—leaves an impression that tends to express itself. This is why you should think feelingly only of the state you desire to realize. [5] In practical terms, especially at bedtime, the guidance is to never go to sleep feeling discouraged or dissatisfied, never sleep in the consciousness of failure. [6]\n\nIn short, the book's stance on regret is not to reflect on it or learn from it emotionally, but to release it completely and redirect your attention toward the feeling of your fulfilled wish.",
+      "cited_chunks": [
+        4,
+        16,
+        19
+      ],
+      "retrieved_chunks": [
+        19,
+        4,
+        3,
+        16
+      ],
+      "grounded_citations": 5,
+      "coverage_hit": [
+        "regret"
+      ],
+      "coverage_miss": [],
+      "gold_chunks": [
+        4,
+        19
+      ],
+      "judge": {
+        "faithfulness": 5,
+        "unsupported_claims": [],
+        "rationale": "All claims in the answer are directly supported by the passages. The reinfect quote, \"do not waste one moment in regret,\" \"turn from appearances and assume the feeling...\" are from passage 1. The claim about regret/failure causing disease is directly quoted from passage 2. The advice to \"think feelingly only of the state you desire\" is from passage 2, and \"never go to sleep feeling discouraged or dissatisfied...never sleep in the consciousness of failure\" is directly from passage 4. The summary characterization (treating regret as harmful, not just unproductive) is a reasonable paraphrase consistent with the passages' framing that entertaining regret leads to disease and reinfection. No added facts or unsupported comparisons are introduced."
+      }
+    },
+    {
+      "id": "prayer-definition",
+      "question": "How does the book define prayer?",
+      "expect": "answer",
+      "refused": false,
+      "n_citations": 8,
+      "timings_ms": {
+        "retrieval": 1808,
+        "generation": 7967,
+        "total": 9775
+      },
+      "usage": {
+        "input_tokens": 3830,
+        "output_tokens": 640
+      },
+      "answer": "According to the book, prayer is fundamentally about feeling rather than asking. Prayer is defined as the art of assuming the feeling of being and having that which you want. [1]\n\nA key point is that prayer works through surrender, not struggle. Prayer is the art of yielding to the wish and not the forcing of the wish. Whenever your feeling is in conflict with your wish, feeling will be the victor, and the dominant feeling invariably expresses itself. [2] For this reason, the book insists that prayer must be without effort, and in attempting to fix an attitude of mind which is denied by the senses, effort is fatal. [3]\n\nThe book also frames prayer as a kind of doorway into the subconscious mind. Prayer, like sleep, is an entrance into the subconscious—an illusion of sleep which diminishes the impression of the outer world and renders the mind more receptive to suggestion from within. The mind in prayer is in a state of relaxation and receptivity akin to the feeling attained just before dropping off to sleep. [4][5]\n\nImportantly, the emphasis is less on the request itself and more on your inner state of readiness. Prayer is not so much what you ask for, as how you prepare for its reception—the only condition required is that you believe that your prayers are already realized. [6][7] As the book puts it, your prayer must be answered if you assume the feeling that would be yours were you already in possession of your objective. The moment you accept the wish as an accomplished fact, the subconscious finds means for its realization; so to pray successfully, you must yield to the wish and feel the wish fulfilled. [8]",
+      "cited_chunks": [
+        22,
+        23
+      ],
+      "retrieved_chunks": [
+        23,
+        22,
+        24,
+        26
+      ],
+      "grounded_citations": 8,
+      "coverage_hit": [
+        "subconscious"
+      ],
+      "coverage_miss": [],
+      "gold_chunks": [
+        22,
+        23,
+        24
+      ],
+      "judge": {
+        "faithfulness": 5,
+        "unsupported_claims": [],
+        "rationale": "All claims in the answer directly correspond to statements found in the passages: the definition of prayer as assuming the feeling of being and having what is wanted (passage 1), prayer as yielding not forcing and the dominance of feeling over wish (passages 1 and 3), prayer as an entrance into the subconscious akin to the state before sleep (passage 2), and the idea that prayer is about preparation and belief rather than the specific request, with the subconscious finding means for realization once the wish is accepted as fact (passage 2). No additional facts, comparisons, or conclusions beyond the text are introduced."
+      }
+    },
+    {
+      "id": "effort-in-prayer",
+      "question": "Why does the book say effort is harmful in prayer?",
+      "expect": "answer",
+      "refused": false,
+      "n_citations": 5,
+      "timings_ms": {
+        "retrieval": 1827,
+        "generation": 9936,
+        "total": 11762
+      },
+      "usage": {
+        "input_tokens": 3836,
+        "output_tokens": 648
+      },
+      "answer": "According to the book, effort backfires in prayer because of how the mind and feeling actually work.\n\nThe core problem is that trying hard signals disbelief. When you're stuck in the mindset of \"I should like to, but I cannot,\" the harder you try, the less you are able to yield to the wish. [1] Effort itself is an admission that you don't yet have what you want.\n\nThis ties into a key principle: you never attract that which you want, but always attract that which you are conscious of being. [2] Straining toward a goal keeps you conscious of *wanting* rather than *having*, which is the opposite of what prayer is meant to accomplish.\n\nThe book also explains that our senses are the enemy here. When your physical senses confirm that your wish hasn't come true yet, all conscious effort to counteract this suggestion is futile and tends to intensify the suggestion. [3] In other words, pushing against the evidence of the senses only makes that evidence loom larger in your mind.\n\nInstead, the book redefines prayer as a gentle surrender rather than a struggle: Prayer is the art of yielding to the wish and not the forcing of the wish. Whenever your feeling is in conflict with your wish, feeling will be the victor. The dominant feeling invariably expresses itself. [4] Since feeling always wins over the wish, the goal is to genuinely *feel* the wish already fulfilled—not to force it.\n\nThat's why the book concludes so bluntly that prayer must be without effort. In attempting to fix an attitude of mind which is denied by the senses, effort is fatal. [5] Effort is harmful because prayer requires a passive, receptive state, and straining destroys the very relaxation that lets the mind accept the wish as an accomplished fact.",
+      "cited_chunks": [
+        23
+      ],
+      "retrieved_chunks": [
+        23,
+        24,
+        25,
+        26
+      ],
+      "grounded_citations": 5,
+      "coverage_hit": [
+        "effort"
+      ],
+      "coverage_miss": [],
+      "gold_chunks": [
+        23,
+        24
+      ],
+      "judge": {
+        "faithfulness": 5,
+        "unsupported_claims": [],
+        "rationale": "The answer's claims are all directly supported by or closely paraphrased from the passages. It correctly cites: the 'I should like to, but I cannot' state and the harder-you-try dynamic (passage 1); the principle that you attract what you are conscious of being (passage 1); the futility of conscious effort against sense-confirmed absence (passage 1); prayer as yielding not forcing, and feeling as victor over wish (passages 1/2); and the direct statement that effort is fatal when senses deny the wish (passages 1/2). The concluding synthesis about needing a passive, receptive state ties naturally to passage 2/3's discussion of creating a passive state. No added facts, comparisons, or unsupported conclusions are introduced beyond reasonable synthesis of the given text."
+      }
+    },
+    {
+      "id": "passive-state",
+      "question": "How do you create the passive state the book describes for prayer?",
+      "expect": "answer",
+      "refused": false,
+      "n_citations": 7,
+      "timings_ms": {
+        "retrieval": 1695,
+        "generation": 9670,
+        "total": 11366
+      },
+      "usage": {
+        "input_tokens": 3871,
+        "output_tokens": 746
+      },
+      "answer": "The book describes a specific, low-effort method for entering this receptive frame of mind. The goal is to reach a passive state, a kind of reverie or meditative reflection similar to the feeling which precedes sleep. [1] In this condition, the mind is turned from the objective world and easily senses the reality of a subjective state. It is a state in which you are conscious and quite able to move or open your eyes but have no desire to do so. [2]\n\nHere's how to get there:\n\n**Get comfortable.** An easy way to create this passive state is to relax in a comfortable chair or on a bed. If on a bed, lie flat on your back with your head on a level with your body, close the eyes and imagine that you are sleepy. [3]\n\n**Induce drowsiness.** Rather than just waiting for sleep, you deliberately cultivate the feeling of it—repeating to yourself something like \"I am sleepy, so sleepy, so very sleepy.\" [4]\n\n**Let the state settle in.** Soon, a faraway feeling accompanied by a general lassitude and loss of all desire to move envelops you. You feel a pleasant, comfortable rest and are not inclined to alter your position, although under other circumstances you would not be at all comfortable. [5]\n\nAn important caveat: this deep level of relaxation isn't strictly required. The book notes that this degree of passivity is not essential to the realization of your prayers. All that is necessary is to create a passive state and feel the wish fulfilled. [6]\n\nThe reason this state matters is that it lowers your mental resistance—prayer is an illusion of sleep which diminishes the impression of the outer world and renders the mind more receptive to suggestion from within. The mind in prayer is in a state of relaxation and receptivity akin to the feeling attained just before dropping off to sleep. [7] Once you've reached it, the next step is simply to imagine and feel your wish already fulfilled.",
+      "cited_chunks": [
+        22,
+        24,
+        25
+      ],
+      "retrieved_chunks": [
+        24,
+        25,
+        26,
+        22
+      ],
+      "grounded_citations": 6,
+      "coverage_hit": [
+        "sleepy"
+      ],
+      "coverage_miss": [],
+      "gold_chunks": [
+        24,
+        25
+      ],
+      "judge": {
+        "faithfulness": 5,
+        "unsupported_claims": [],
+        "rationale": "All claims in the answer directly correspond to text found in the passages, including the description of the passive state, the method of relaxing on a chair or bed, imagining sleepiness, the resulting lassitude, the caveat that deep passivity isn't essential, and the rationale about prayer diminishing the outer world's impression. No additional facts or unsupported conclusions are introduced; the answer paraphrases and organizes the passage content accurately."
+      }
+    },
+    {
+      "id": "faith-is-feeling",
+      "question": "What is faith, according to the final chapter?",
+      "expect": "answer",
+      "refused": false,
+      "n_citations": 3,
+      "timings_ms": {
+        "retrieval": 1497,
+        "generation": 6198,
+        "total": 7696
+      },
+      "usage": {
+        "input_tokens": 3593,
+        "output_tokens": 365
+      },
+      "answer": "According to the book, faith and feeling are essentially the same thing. Neville puts it directly: \"Faith is feeling\" [1] — and he grounds this in the biblical phrase \"According to your faith be it unto you,\" reading \"faith\" as meaning \"feeling.\"\n\nWhat follows from this is that having faith means inwardly assuming the emotional state of already having what you want. You never attract that which you want, but always that which you are; as a man is, so does he see. [2] In other words, what you experience in the outer world reflects the inner state you actually feel yourself to be, not merely what you wish for.\n\nThe practical instruction that comes out of this definition of faith is simple: what you feel yourself to be, you are, and you are given that which you are — so assume the feeling that would be yours were you already in possession of your wish, and your wish must be realized. [3]\n\nSo in short, faith here isn't intellectual belief or hoping; it's the confident, felt assumption that your desire is already fulfilled.",
+      "cited_chunks": [
+        27,
+        28
+      ],
+      "retrieved_chunks": [
+        28,
+        27,
+        29,
+        18
+      ],
+      "grounded_citations": 3,
+      "coverage_hit": [
+        "feeling"
+      ],
+      "coverage_miss": [],
+      "gold_chunks": [
+        27,
+        28
+      ],
+      "judge": {
+        "faithfulness": 4,
+        "unsupported_claims": [
+          "According to the book, faith and feeling are essentially the same thing... according to the 'final chapter'",
+          "The passages are labeled as Chapter 4 and Chapter 2, not the 'final chapter' of the book; this framing is not supported by the given passages."
+        ],
+        "rationale": "The core content of the answer—'Faith is feeling,' the interpretation of Matthew 9:29, the idea that you attract what you are not what you want, and the instruction to assume the feeling of the wish fulfilled—are all directly supported by passages 1 and 2. However, the answer's framing that this is 'the final chapter' is an unsupported claim, since the passages are explicitly labeled as Chapter 4 (Spirit – Feeling) and Chapter 2 (Sleep), with no indication that Chapter 4 is the final chapter of the book. This is a factual claim not substantiated by the given passages. The rest of the answer's substantive claims are faithful paraphrases of the source material."
+      }
+    },
+    {
+      "id": "no-testimonials",
+      "question": "Why did the author leave arguments and testimonials out of the book?",
+      "expect": "answer",
+      "refused": false,
+      "n_citations": 4,
+      "timings_ms": {
+        "retrieval": 1585,
+        "generation": 7479,
+        "total": 9064
+      },
+      "usage": {
+        "input_tokens": 3814,
+        "output_tokens": 389
+      },
+      "answer": "Neville deliberately left out arguments and testimonials because he believed they simply wouldn't work as a means of persuasion. As he explains, it's rarely possible to convince someone through written statements or arguments, since a skeptical reader can always dismiss the evidence by supposing the author was either dishonest or deluded, thereby tainting his testimony. [1]\n\nInstead of trying to prove his case on paper, he chose a different approach: he purposely omitted all arguments and testimonials, and simply challenges the open-minded reader to practice the law of consciousness as revealed in the book. [2]\n\nHis reasoning is that direct experience is far more convincing than any written case could be. As he puts it, personal success will prove far more convincing than all the books that could be written on the subject. [3] He even notes that had it been possible to carry conviction through reasoned arguments and detailed instances, the book would have been many times its size [4] — but since that method doesn't truly persuade, he kept it small and pointed readers toward practice instead.",
+      "cited_chunks": [
+        0
+      ],
+      "retrieved_chunks": [
+        0,
+        18,
+        23,
+        3
+      ],
+      "grounded_citations": 4,
+      "coverage_hit": [
+        "practice"
+      ],
+      "coverage_miss": [],
+      "gold_chunks": [
+        0
+      ],
+      "judge": {
+        "faithfulness": 5,
+        "unsupported_claims": [],
+        "rationale": "The answer's claims closely paraphrase and directly quote passage 1 (Foreword). It accurately states: arguments/testimonials don't convince suspended judgment readers because they can dismiss author as dishonest or deluded; he omitted arguments and testimonials, challenging the reader to practice the law; personal success is more convincing than books; and the book would have been larger if reasoned arguments could carry conviction. All these are explicitly supported by passage 1 with no added facts."
+      }
+    },
+    {
+      "id": "refuse-diet",
+      "question": "What does the book say about diet and exercise?",
+      "expect": "refuse",
+      "refused": true,
+      "n_citations": 2,
+      "timings_ms": {
+        "retrieval": 1738,
+        "generation": 5645,
+        "total": 7384
+      },
+      "usage": {
+        "input_tokens": 3231,
+        "output_tokens": 316
+      },
+      "answer": "The book, as provided in these passages, does not address diet or exercise directly. It focuses instead on the role of feeling and emotion in shaping one's physical condition.\n\nWhat it does say about the body is that there's an unbroken connection between your feelings and your visible world, and your body acts as an emotional filter that bears the unmistakable marks of your prevalent emotions. [1] Rather than pointing to diet or exercise, Neville locates the origin of illness in emotional life: emotional disturbances, especially suppressed emotions, are the causes of all disease—and to feel intensely about a wrong without voicing or expressing that feeling is the beginning of disease (\"dis-ease\") in both body and environment. [2]\n\nSo if you're looking for guidance on physical health, the book's approach is emotional rather than physical—it doesn't offer advice on diet or exercise.",
+      "cited_chunks": [
+        4
+      ],
+      "retrieved_chunks": [
+        4,
+        0,
+        11,
+        29
+      ]
+    },
+    {
+      "id": "refuse-biography",
+      "question": "Where was Neville Goddard born and what did he do before writing?",
+      "expect": "refuse",
+      "refused": true,
+      "n_citations": 0,
+      "timings_ms": {
+        "retrieval": 1518,
+        "generation": 3181,
+        "total": 4699
+      },
+      "usage": {
+        "input_tokens": 4088,
+        "output_tokens": 132
+      },
+      "answer": "The book, as provided, doesn't contain any biographical information about Neville Goddard—where he was born or what he did before writing. The passages I have access to focus entirely on the ideas in \"Feeling Is the Secret,\" such as the relationship between the conscious and subconscious mind and the role of feeling in shaping one's reality. If you have questions about the actual content and teachings of the book, I'd be glad to help.",
+      "cited_chunks": [],
+      "retrieved_chunks": [
+        0,
+        1,
+        5,
+        4
+      ]
+    },
+    {
+      "id": "refuse-investing",
+      "question": "What is the book's advice on stock market investing?",
+      "expect": "refuse",
+      "refused": true,
+      "n_citations": 2,
+      "timings_ms": {
+        "retrieval": 750,
+        "generation": 3958,
+        "total": 4708
+      },
+      "usage": {
+        "input_tokens": 3353,
+        "output_tokens": 216
+      },
+      "answer": "The book, as provided, does not address stock market investing at all. Its focus is entirely on a different subject: the art of realizing your desire and an account of the mechanism used in the production of the visible world. [1]\n\nIf you're interested, the book's central teaching is about how feeling shapes your circumstances more broadly—for example, the idea that you should turn from appearances and assume the feeling that would be yours were you already the one you wish to be, because feeling a state produces that state. [2] But there is nothing in these passages that speaks specifically to investing or financial markets.",
+      "cited_chunks": [
+        0,
+        19
+      ],
+      "retrieved_chunks": [
+        0,
+        28,
+        29,
+        19
+      ]
+    },
+    {
+      "id": "refuse-astrology",
+      "question": "Does the book discuss astrology or horoscopes?",
+      "expect": "refuse",
+      "refused": true,
+      "n_citations": 4,
+      "timings_ms": {
+        "retrieval": 787,
+        "generation": 6227,
+        "total": 7013
+      },
+      "usage": {
+        "input_tokens": 3948,
+        "output_tokens": 414
+      },
+      "answer": "The book, as provided in these passages, does not discuss astrology or horoscopes at all. In fact, Neville argues against the idea that external forces or predetermined fate control your life. He states plainly that chance or accident is not responsible for the things that happen to you, nor is predestined fate the author of your fortune or misfortune. [1]\n\nRather than pointing to the stars or any outside influence, the book locates the cause of your circumstances entirely within your own inner state. Your subconscious impressions determine the conditions of your world. [2] Neville insists that nothing comes from without; all things come from within – from the subconscious. [3]\n\nSo while the specific topic of astrology or horoscopes isn't addressed directly in these passages, the entire philosophy of the book runs counter to the notion that your destiny is written in the stars. Neville emphasizes personal agency, noting that free will is only freedom of choice. \"Choose ye this day whom ye shall serve\" is your freedom to choose the kind of mood you assume; but the expression of the mood is the secret of the subconscious. [4]",
+      "cited_chunks": [
+        5,
+        10,
+        18
+      ],
+      "retrieved_chunks": [
+        0,
+        5,
+        18,
+        10
+      ]
+    }
+  ]
+}

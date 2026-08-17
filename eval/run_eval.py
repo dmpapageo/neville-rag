@@ -107,10 +107,12 @@ _judge = Anthropic(api_key=settings.anthropic_api_key)
 _JUDGE_TOOL = {
     "name": "grade",
     "description": "Record the faithfulness grade for one answer.",
+    "strict": True,
     "input_schema": {
         "type": "object",
+        "additionalProperties": False,
         "properties": {
-            "faithfulness": {"type": "integer", "minimum": 1, "maximum": 5,
+            "faithfulness": {"type": "integer", "enum": [1, 2, 3, 4, 5],
                              "description": "5 = every claim is supported by the passages; "
                                             "1 = mostly unsupported."},
             "unsupported_claims": {"type": "array", "items": {"type": "string"},
@@ -142,8 +144,23 @@ def judge_faithfulness(a: Answer) -> dict:
     )
     for block in resp.content:
         if block.type == "tool_use":
-            return block.input
+            return _normalize_grade(block.input)
     raise RuntimeError("judge returned no tool_use block")
+
+
+def _normalize_grade(g: dict) -> dict:
+    """Defend against a judge that hands back unsupported_claims as one string:
+    counting characters would look like hundreds of hallucinations."""
+    claims = g.get("unsupported_claims", [])
+    if isinstance(claims, str):
+        try:
+            parsed = json.loads(claims)
+            claims = parsed if isinstance(parsed, list) else [claims]
+        except ValueError:
+            claims = [claims] if claims.strip() else []
+    g["unsupported_claims"] = [str(c) for c in claims if str(c).strip()]
+    g["faithfulness"] = int(g.get("faithfulness", 0))
+    return g
 
 
 # --- run ----------------------------------------------------------------------------

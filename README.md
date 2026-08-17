@@ -72,6 +72,13 @@ Gates: refusal accuracy 100%, citation precision ≥ 90%, gold recall ≥ 90%, m
 PYTHONPATH=backend uv run python eval/run_eval.py
 ```
 
+**Latest results** (`eval/report.md`, Opus 4.8 answering, Sonnet 5 judging): refusal accuracy 100% (4/4 out-of-scope questions declined, 16/16 in-scope answered), citation precision 97.0% (96/99 citations land in a gold chunk), gold recall 100%, mean faithfulness 4.94 with no case below 4. Retrieval p50 1.6 s (embed + Pinecone + rerank), generation p50 8.1 s; ≈3.9k input / 560 output tokens per answer.
+
+Two things the first run taught me, kept here on purpose:
+
+- **The labels were the bug, not the app.** The first run scored citation precision at 76.8%. Reading every "ungrounded" citation against the book showed all of them were legitimate — the model had cited *additional* passages that answered the question, and my gold set only listed the one sentence I'd had in mind. Gold phrases were widened only where the passage genuinely answers the question; chunk-level precision is a lower bound that is only as good as label coverage, and it should be read next to the judge's faithfulness score, which measures grounding directly.
+- **The judge catches premise-parroting.** The one remaining sub-5 case asks about "the final chapter"; the passages say "Chapter 4" but never that it is the last one, and the answer repeated the question's framing. The judge marked that unsupported. That is the correct call, so the question stays as written.
+
 ## Design notes
 
 - **Why a separate embeddings provider?** Claude generates text but doesn't produce embeddings, so retrieval uses a dedicated embeddings model (Voyage, Anthropic's recommended provider). Embeddings measure similarity for retrieval; generation writes the answer.

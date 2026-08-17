@@ -5,9 +5,14 @@
     "expect": "answer",
     "gold_phrases": [
       "The conscious is personal and selective; the subconscious is impersonal and non-selective",
-      "The conscious generates ideas and impresses these ideas on the subconscious"
+      "The conscious generates ideas and impresses these ideas on the subconscious",
+      "The conscious (objective) or male aspect truly is the head and dominates the subconscious (subjective) or female aspect",
+      "the subconscious has a distinct distaste for compulsion and responds to persuasion rather than to command"
     ],
-    "must_mention": ["conscious", "subconscious"]
+    "must_mention": [
+      "conscious",
+      "subconscious"
+    ]
   },
   {
     "id": "how-ideas-impressed",
@@ -15,18 +20,25 @@
     "expect": "answer",
     "gold_phrases": [
       "Ideas are impressed on the subconscious through the medium of feeling",
-      "Feeling is the one and only medium through which ideas are conveyed to the subconscious"
+      "Feeling is the one and only medium through which ideas are conveyed to the subconscious",
+      "The conscious generates ideas and impresses these ideas on the subconscious",
+      "To impress the subconscious with the desirable state, you must assume the feeling that would be yours had you already realized your wish"
     ],
-    "must_mention": ["feeling"]
+    "must_mention": [
+      "feeling"
+    ]
   },
   {
     "id": "dominant-feeling",
     "question": "What does the book mean by 'the dominant of two feelings'?",
     "expect": "answer",
     "gold_phrases": [
-      "The dominant of two feelings is the one expressed. I am healthy is a stronger feeling than I will be healthy"
+      "The dominant of two feelings is the one expressed. I am healthy is a stronger feeling than I will be healthy",
+      "Whenever your feeling is in conflict with your wish, feeling will be the victor. The dominant feeling invariably expresses itself"
     ],
-    "must_mention": ["dominant"]
+    "must_mention": [
+      "dominant"
+    ]
   },
   {
     "id": "disease-cause",
@@ -35,16 +47,22 @@
     "gold_phrases": [
       "Emotional disturbances, especially suppressed emotions, are the causes of all disease"
     ],
-    "must_mention": ["emotion"]
+    "must_mention": [
+      "emotion"
+    ]
   },
   {
     "id": "servant-vs-wife",
     "question": "Why does the book compare the subconscious to a wife rather than a servant?",
     "expect": "answer",
     "gold_phrases": [
-      "the subconscious has a distinct distaste for compulsion and responds to persuasion rather than to command"
+      "the subconscious has a distinct distaste for compulsion and responds to persuasion rather than to command",
+      "However, this leadership is not that of the tyrant, but of the lover",
+      "unlike the woman of the world who marries her husband to change him – has no desire to change the conscious, waking state"
     ],
-    "must_mention": ["persuasion"]
+    "must_mention": [
+      "persuasion"
+    ]
   },
   {
     "id": "sleep-role",
@@ -52,9 +70,13 @@
     "expect": "answer",
     "gold_phrases": [
       "SLEEP, the life that occupies one-third of our stay on earth, is the natural door into the subconscious",
-      "In sleep, man impresses the subconscious with his conception of himself"
+      "In sleep, man impresses the subconscious with his conception of himself",
+      "This is the way to discover and conduct your wishes into the subconscious",
+      "By feeling your wish fulfilled and quietly relaxing into sleep, you cast yourself in a star role to be played on earth tomorrow"
     ],
-    "must_mention": ["subconscious"]
+    "must_mention": [
+      "subconscious"
+    ]
   },
   {
     "id": "before-sleep",
@@ -62,9 +84,13 @@
     "expect": "answer",
     "gold_phrases": [
       "you should always feel the wish fulfilled before you drop off to sleep",
-      "Feel yourself in the state of the realized wish and quietly drop off to sleep"
+      "Feel yourself in the state of the realized wish and quietly drop off to sleep",
+      "You must be in the consciousness of being or having that which you want to be or to have before you drop off to sleep",
+      "If, as you prepare for sleep, you assume and maintain the consciousness of success"
     ],
-    "must_mention": ["wish"]
+    "must_mention": [
+      "wish"
+    ]
   },
   {
     "id": "body-position",
@@ -74,16 +100,22 @@
       "Lie flat on your back with your head on a level with your body",
       "lie flat on your back with your head on a level with your body, close the eyes and imagine that you are sleepy"
     ],
-    "must_mention": ["flat", "back"]
+    "must_mention": [
+      "flat",
+      "back"
+    ]
   },
   {
     "id": "signs-follow",
     "question": "What does the book mean by 'signs follow, they do not precede'?",
     "expect": "answer",
     "gold_phrases": [
-      "Proof that you are will follow the consciousness that you are; it will not precede it"
+      "Proof that you are will follow the consciousness that you are; it will not precede it",
+      "Denying the evidence of the senses and appropriating the feeling of the wish fulfilled is the way to the realization of your desire"
     ],
-    "must_mention": ["follow"]
+    "must_mention": [
+      "follow"
+    ]
   },
   {
     "id": "free-will",
@@ -91,9 +123,12 @@
     "expect": "answer",
     "gold_phrases": [
       "Free will is only freedom of choice",
-      "Your only freedom, then, is your freedom of reaction"
+      "Your only freedom, then, is your freedom of reaction",
+      "His illusion of free will, his belief in freedom of action, is but ignorance of the causes which make him act"
     ],
-    "must_mention": ["freedom"]
+    "must_mention": [
+      "freedom"
+    ]
   },
   {
     "id": "regret",
@@ -103,7 +138,9 @@
       "Do not entertain the feeling of regret or failure",
       "Do not waste one moment in regret, for to think feelingly of the mistakes of the past is to reinfect yourself"
     ],
-    "must_mention": ["regret"]
+    "must_mention": [
+      "regret"
+    ]
   },
   {
     "id": "prayer-definition",
@@ -114,7 +151,9 @@
       "Prayer is the art of assuming the feeling of being and having that which you want",
       "Prayer is the art of yielding to the wish and not the forcing of the wish"
     ],
-    "must_mention": ["subconscious"]
+    "must_mention": [
+      "subconscious"
+    ]
   },
   {
     "id": "effort-in-prayer",
@@ -124,7 +163,9 @@
       "Prayer must be without effort. In attempting to fix an attitude of mind which is denied by the senses, effort is fatal",
       "the harder you try, the less you are able to yield to the wish"
     ],
-    "must_mention": ["effort"]
+    "must_mention": [
+      "effort"
+    ]
   },
   {
     "id": "passive-state",
@@ -134,7 +175,9 @@
       "An easy way to create this passive state is to relax in a comfortable chair or on a bed",
       "Feel – I am sleepy, so sleepy, so very sleepy"
     ],
-    "must_mention": ["sleepy"]
+    "must_mention": [
+      "sleepy"
+    ]
   },
   {
     "id": "faith-is-feeling",
@@ -143,7 +186,9 @@
     "gold_phrases": [
       "Faith is feeling"
     ],
-    "must_mention": ["feeling"]
+    "must_mention": [
+      "feeling"
+    ]
   },
   {
     "id": "no-testimonials",
@@ -152,7 +197,9 @@
     "gold_phrases": [
       "I have purposely omitted all arguments and testimonials, and simply challenge the open-minded reader to practice the law of consciousness"
     ],
-    "must_mention": ["practice"]
+    "must_mention": [
+      "practice"
+    ]
   },
   {
     "id": "refuse-diet",
