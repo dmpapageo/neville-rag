@@ -25,7 +25,7 @@ The pipeline has four stages:
 
 ## Stack
 
-- **Generation:** Claude (`claude-opus-4-8`, Anthropic API, native citations)
+- **Generation:** Claude (`claude-opus-5`, Anthropic API, native citations)
 - **Embeddings:** Voyage AI (`voyage-3.5-lite`, query/document asymmetric)
 - **Vector store:** Pinecone (serverless, cosine; top-10 candidates)
 - **Reranking:** Voyage `rerank-2.5-lite` cross-encoder (top-4 kept)
