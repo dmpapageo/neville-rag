@@ -38,3 +38,6 @@ There is no scripts section (pyproject has no scripts/entry points); these are t
 - CI (`.github/workflows/tests.yml`) runs only the offline tests on push/PR; the live eval is local-only by design (it costs API credit).
 - The frontend only calls `/api/ask/stream`; the non-streaming `/api/ask` is unused by the UI.
 - No PDF extraction script is in the repo. `data/feeling_is_the_secret.txt` is committed as-is and is the input to chunking.
+
+## Open items (4 Sep 2026)
+- `eval/report.md` and `results.json` are still the Opus 4.8 baseline. The app now defaults to `claude-opus-5`; re-run `eval/run_eval.py` to refresh them (costs API credit).
