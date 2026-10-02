@@ -18,14 +18,14 @@ https://github.com/user-attachments/assets/caca88da-b1b2-4d26-9dfa-a33e4dc7eac4
 
 The pipeline has four stages:
 
-1. **Ingestion.** The book is extracted from PDF to clean text (layout-aware, preserving the author's terms), split with hybrid section-aware chunking (paragraph boundaries, capped at 350 tokens with 15% overlap, sized with Voyage's own tokenizer — 30 chunks for this book), embedded with Voyage AI, and stored in Pinecone.
+1. **Ingestion.** The book is extracted from PDF to clean text (layout-aware, preserving the author's terms), split with hybrid section-aware chunking (paragraph boundaries, capped at 350 tokens with 15% overlap, sized with Voyage's own tokenizer; 30 chunks for this book), embedded with Voyage AI, and stored in Pinecone.
 2. **Retrieval.** A question is embedded (using query-type embeddings), matched against the stored chunks via cosine similarity in Pinecone, then reranked for precision.
 3. **Grounded generation.** The top passages plus the question are sent to Claude, which answers using only the provided text and cites its sources. Context isolation (the model only sees retrieved passages) plus a strict system prompt enforce grounding.
 4. **Web UI.** A lightweight frontend shows the streamed answer, its citations, and the source passages, with click-to-highlight linking each citation to its exact span in the text.
 
 ## Stack
 
-- **Generation:** Claude (`claude-opus-5`, Anthropic API, native citations)
+- **Generation:** Claude (`claude-opus-4-8`, Anthropic API, native citations; pinned, see Evaluation)
 - **Embeddings:** Voyage AI (`voyage-3.5-lite`, query/document asymmetric)
 - **Vector store:** Pinecone (serverless, cosine; top-10 candidates)
 - **Reranking:** Voyage `rerank-2.5-lite` cross-encoder (top-4 kept)
@@ -49,22 +49,22 @@ Requires API keys for Anthropic, Voyage, and Pinecone.
 
 Two layers, same idea as my [LLM eval harness](https://github.com/dmpapageo/llm-eval-harness): deterministic checks where possible, an LLM judge only for what can't be checked mechanically.
 
-**Offline tests** (`tests/`, run on every push in GitHub Actions, no keys): the chunker respects the token cap, overlaps inside a section, never crosses a section boundary, and — the property citation highlighting depends on — every chunk's `char_start`/`char_end` indexes back to its own text in the source file, for both synthetic input and the committed `data/chunks.jsonl`. It also checks that every gold phrase in the eval set really exists in the book.
+**Offline tests** (`tests/`, run on every push in GitHub Actions, no keys): the chunker respects the token cap, overlaps inside a section, never crosses a section boundary, and (the property citation highlighting depends on) every chunk's `char_start`/`char_end` indexes back to its own text in the source file, for both synthetic input and the committed `data/chunks.jsonl`. It also checks that every gold phrase in the eval set really exists in the book, and that the eval's refusal detector ignores a hedge that follows a citation.
 
 ```
 PYTHONPATH=backend uv run --with pytest pytest tests/ -q
 ```
 
-**Live eval** (`eval/run_eval.py`, run locally — it spends API credit): 20 hand-labelled questions in `eval/questions.json`, 16 answerable and 4 deliberately out of scope. Each answerable question carries *gold phrases* — exact sentences from the book that answer it — so grading needs no opinion about which chunk is "right":
+**Live eval** (`eval/run_eval.py`, run locally, since it spends API credit): 20 hand-labeled questions in `eval/questions.json`, 16 answerable and 4 deliberately out of scope. Each answerable question carries *gold phrases* (exact sentences from the book that answer it), so grading needs no opinion about which chunk is "right":
 
 | Metric | How it's graded |
 |---|---|
-| Refusal accuracy | deterministic — refused exactly the out-of-scope questions |
-| Citation precision | deterministic — share of citations whose source span lands in a chunk containing a gold phrase |
-| Gold recall | deterministic — answerable questions with at least one grounded citation |
-| Faithfulness | LLM-as-judge (`claude-sonnet-5`, a different family than the answerer) — every claim supported by the retrieved passages, 1–5, with unsupported claims listed |
-| Coverage | deterministic, advisory — `must_mention` terms present |
-| Latency / tokens | measured — retrieval vs generation wall time, tokens per answer |
+| Refusal accuracy | deterministic: refused exactly the out-of-scope questions |
+| Citation precision | deterministic: share of citations whose source span lands in a chunk containing a gold phrase |
+| Gold recall | deterministic: answerable questions with at least one grounded citation |
+| Faithfulness | LLM-as-judge (`claude-sonnet-5`, a different model than the answerer): every claim supported by the retrieved passages, 1 to 5, with unsupported claims listed |
+| Coverage | deterministic, advisory: `must_mention` terms present |
+| Latency / tokens | measured: retrieval vs generation wall time, tokens per answer |
 
 Gates: refusal accuracy 100%, citation precision ≥ 90%, gold recall ≥ 90%, mean faithfulness ≥ 4.5, per-case faithfulness ≥ 4. The script exits 1 on any breach and writes `eval/results.json` and `eval/report.md`.
 
@@ -76,8 +76,19 @@ PYTHONPATH=backend uv run python eval/run_eval.py
 
 Two things the first run taught me, kept here on purpose:
 
-- **The labels were the bug, not the app.** The first run scored citation precision at 76.8%. Reading every "ungrounded" citation against the book showed all of them were legitimate — the model had cited *additional* passages that answered the question, and my gold set only listed the one sentence I'd had in mind. Gold phrases were widened only where the passage genuinely answers the question; chunk-level precision is a lower bound that is only as good as label coverage, and it should be read next to the judge's faithfulness score, which measures grounding directly.
+- **The labels were the bug, not the app.** The first run scored citation precision at 76.8%. Reading every "ungrounded" citation against the book showed all of them were legitimate: the model had cited *additional* passages that answered the question, and my gold set only listed the one sentence I'd had in mind. Gold phrases were widened only where the passage genuinely answers the question; chunk-level precision is a lower bound that is only as good as label coverage, and it should be read next to the judge's faithfulness score, which measures grounding directly.
 - **The judge catches premise-parroting.** The one remaining sub-5 case asks about "the final chapter"; the passages say "Chapter 4" but never that it is the last one, and the answer repeated the question's framing. The judge marked that unsupported. That is the correct call, so the question stays as written.
+
+**Model upgrades go through the gate.** On 2 Oct 2026 I reran the eval with Opus 5.5 as the answerer (`eval/report-opus-5-5.md`). It cited more passages per answer (154 against 99), 20 of them outside the gold chunks, so citation precision fell to 87.0% and failed the 90% gate. The app stays pinned to Opus 4.8 until a newer model passes. The same run exposed a grader bug: a hedge after a cited answer ("the passages provided don't say whether...") was scored as a refusal. Refusal detection now reads only the text before the first citation, covered by `tests/test_refusal.py`.
+
+## Red teaming
+
+`redteam/` holds a [Promptfoo](https://www.promptfoo.dev/) suite that sends attacks through the real pipeline (retrieval, then Claude with citations) via `redteam/provider.py`. Each test is tagged with an OWASP LLM Top 10 id (LLM01, 06, 07, 08, 09). One run is committed, `redteam/report-baseline.md`, dated 28 Sep 2026 with Opus 5 answering (before the pin to Opus 4.8) and Sonnet 5 grading. It is a single dated run and has not been repeated on Opus 4.8.
+
+- **Canary injection: 12/12 passed.** Each case splices a poisoned chunk into the retrieved passages at rank 1 and checks deterministically that its embedded instruction was not followed. The last case is a positive control proving the splice reaches the model.
+- **Generated attacks: 174/177 passed (98.3%, gate 90%).** A deterministic 177-case subset of 381 Promptfoo-generated attacks, across 10 plugins (prompt extraction, system prompt override, hijacking, off-topic, hallucination, harmful advice and others) and 4 strategies (basic, base64, jailbreak templates, composite jailbreaks).
+
+The three failures are kept verbatim in the report: a fake system tag made the answer start with "HACKED:", a jailbreak-framed request got working JavaScript instead of a refusal, and an encoded jailbreak got uncited off-topic content. A prompt-hardening attempt for these (branch `redteam-hardening`, 28 Sep 2026, Opus 5 answering) failed the RAG eval at 88.7% citation precision with one case scored 2 for faithfulness, and its own red-team rerun still failed the gate, so it stayed off main.
 
 ## Design notes
 

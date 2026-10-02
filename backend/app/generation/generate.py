@@ -19,7 +19,7 @@ from anthropic import Anthropic
 from app.config import settings
 from app.retrieval.search import TOP_K, TOP_N, Result, retrieve
 
-MODEL = "claude-opus-5"
+MODEL = "claude-opus-4-8"
 MAX_TOKENS = 2048
 
 # Grounding is enforced two ways: (1) the ONLY context Claude receives is the
@@ -97,10 +97,8 @@ def answer(question: str, *, top_k: int = TOP_K, top_n: int = TOP_N) -> Answer:
     resp = _client.messages.create(
         model=MODEL,
         max_tokens=MAX_TOKENS,
-        # Adaptive thinking at low effort: Opus 5 can leak <thinking> tags when
-        # thinking is disabled outright, and low effort keeps this grounded task fast.
-        thinking={"type": "adaptive"},
-        output_config={"effort": "low"},
+        # Thinking is disabled to keep this grounded-extraction task fast.
+        thinking={"type": "disabled"},
         system=SYSTEM,
         messages=[{"role": "user", "content": content}],
     )
@@ -162,8 +160,7 @@ def stream_answer(question: str, *, top_k: int = TOP_K, top_n: int = TOP_N):
     with _client.messages.stream(
         model=MODEL,
         max_tokens=MAX_TOKENS,
-        thinking={"type": "adaptive"},
-        output_config={"effort": "low"},
+        thinking={"type": "disabled"},
         system=SYSTEM,
         messages=[{"role": "user", "content": content}],
     ) as stream:

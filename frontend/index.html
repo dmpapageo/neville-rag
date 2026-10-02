@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Feeling Is the Secret — Ask the Book</title>
+<title>Feeling Is the Secret: Ask the Book</title>
 <style>
   :root {
     --paper: #f6f3ec;
@@ -108,7 +108,7 @@
   <div class="wrap">
     <header>
       <h1>Feeling Is the Secret</h1>
-      <p>Ask a question — answers are grounded only in Neville Goddard’s 1944 text, with citations.</p>
+      <p>Ask a question. Answers are grounded only in Neville Goddard’s 1944 text, with citations.</p>
     </header>
 
     <form id="form">
@@ -274,7 +274,7 @@ async function submit() {
       outOfScope = ev.top_score < LOW_RELEVANCE;
       if (outOfScope) {
         $("noticeText").textContent =
-          "This question appears to fall outside the book. The answer reflects only what the text supports — no closely matching passages were found.";
+          "This question appears to fall outside the book. The answer reflects only what the text supports, and no closely matching passages were found.";
         $("notice").classList.add("show");
         $("sources").innerHTML = `<div class="nosrc">No relevant passages were found in the book for this question.</div>`;
       }

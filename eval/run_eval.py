@@ -39,7 +39,7 @@ SOURCE = ROOT / "data" / "feeling_is_the_secret.txt"
 RESULTS = ROOT / "eval" / "results.json"
 REPORT = ROOT / "eval" / "report.md"
 
-JUDGE_MODEL = "claude-sonnet-5"   # a different model family than the answerer, on purpose
+JUDGE_MODEL = "claude-sonnet-5"   # a different model than the answerer, on purpose
 
 THRESHOLDS = {
     "min_refusal_accuracy": 1.0,
@@ -86,7 +86,12 @@ def _overlaps(a0: int, a1: int, spans: list[tuple[int, int]]) -> bool:
 # --- deterministic graders ------------------------------------------------------
 
 def refused(a: Answer) -> bool:
-    return not a.citations or bool(_DECLINE.search(a.text))
+    # A refusal says so before citing anything. Only the text before the first
+    # [n] marker is searched, so a hedge after a cited answer is not a refusal.
+    if not a.citations:
+        return True
+    opening = re.split(r"\[\d+\]", a.text, maxsplit=1)[0]
+    return bool(_DECLINE.search(opening))
 
 
 def grade_citations(a: Answer, spans: list[tuple[int, int]]) -> tuple[int, int]:

@@ -9,7 +9,7 @@ A RAG Q&A web app over one public-domain book, *Feeling Is the Secret* (Neville 
 - Python >= 3.12 (`.python-version`: 3.12), package manager `uv` (`uv.lock` committed, no `pip`/`requirements.txt`).
 - Backend: FastAPI + uvicorn[standard]; config via pydantic-settings.
 - Frontend: one hand-written `frontend/index.html` (342 lines, plain HTML/CSS/JS). No Node, no package.json, no build step.
-- LLM: Anthropic SDK. Answerer `claude-opus-5` (`backend/app/generation/generate.py`), eval judge `claude-sonnet-5` (`eval/run_eval.py`).
+- LLM: Anthropic SDK. Answerer `claude-opus-4-8` (`backend/app/generation/generate.py`), eval judge `claude-sonnet-5` (`eval/run_eval.py`).
 - Embeddings + rerank: Voyage AI, `voyage-3.5-lite` (document/query asymmetric) and `rerank-2.5-lite`.
 - Vector store: Pinecone serverless, cosine, aws/us-east-1; top-10 from vector search, top-4 after rerank.
 
@@ -28,7 +28,7 @@ There is no scripts section (pyproject has no scripts/entry points); these are t
 ## Layout & gotchas
 
 - `backend/app/`: `main.py` (FastAPI: `POST /api/ask`, `POST /api/ask/stream` SSE, `GET /` serves the frontend), `ingestion/{chunk,embed}.py`, `retrieval/search.py`, `generation/generate.py`. `config.py` holds all keys.
-- `data/`: committed source `.pdf`, extracted `.txt`, and `chunks.jsonl` (30 chunks). `eval/`: questions, runner, committed `results.json`/`report.md`. `tests/test_chunking.py` is the only test file.
+- `data/`: committed source `.pdf`, extracted `.txt`, and `chunks.jsonl` (30 chunks). `eval/`: questions, runner, committed `results.json`/`report.md`. Tests: `tests/test_chunking.py` and `tests/test_refusal.py`, both offline.
 - **`PYTHONPATH=backend` is required on every command**: `backend` is not a package root on its own and imports are `app.*`.
 - **Always run from the repo root**: `chunk.py`/`embed.py` use relative paths (`data/...`).
 - `pytest` is not a declared dependency: it is pulled in ad hoc via `uv run --with pytest`.
@@ -40,4 +40,4 @@ There is no scripts section (pyproject has no scripts/entry points); these are t
 - No PDF extraction script is in the repo. `data/feeling_is_the_secret.txt` is committed as-is and is the input to chunking.
 
 ## Open items (4 Sep 2026)
-- `eval/report.md` and `results.json` are still the Opus 4.8 baseline. The app now defaults to `claude-opus-5`; re-run `eval/run_eval.py` to refresh them (costs API credit).
+- The answerer is pinned to `claude-opus-4-8`, the last model to pass every eval gate (`eval/report.md`). Opus 5.5 failed citation precision at 87.0% on 2 Oct 2026 (`eval/report-opus-5-5.md`). Rerun `eval/run_eval.py` before changing `MODEL` (costs API credit).
