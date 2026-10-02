@@ -38,6 +38,4 @@ There is no scripts section (pyproject has no scripts/entry points); these are t
 - CI (`.github/workflows/tests.yml`) runs only the offline tests on push/PR; the live eval is local-only by design (it costs API credit).
 - The frontend only calls `/api/ask/stream`; the non-streaming `/api/ask` is unused by the UI.
 - No PDF extraction script is in the repo. `data/feeling_is_the_secret.txt` is committed as-is and is the input to chunking.
-
-## Open items (4 Sep 2026)
 - The answerer is pinned to `claude-opus-4-8`, the last model to pass every eval gate (`eval/report.md`). Opus 5.5 failed citation precision at 87.0% on 2 Oct 2026 (`eval/report-opus-5-5.md`). Rerun `eval/run_eval.py` before changing `MODEL` (costs API credit).
